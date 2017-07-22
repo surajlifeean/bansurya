@@ -15,6 +15,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <style>
  
 
@@ -60,8 +61,48 @@
     }
 
 
+/*on hover menu*/
+.caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+
   </style>
 
+
+  <script>
+
+  if ( $(window).width() > 770) {      
+  
+          $(function(){
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            });
+    });
+    }
+    else{
+         ;
+           
+}
+
+  </script>
+    
 </head>
 <body>
 
@@ -78,11 +119,46 @@
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="#"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li class="#">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Trending <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" >
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+      
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Ethnic Wear <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" >
+              <li><a href="#">Saree</a></li>
+              <li><a href="#">Lehenga</a></li>
+              <li><a href="#">Salwar</a></li>
+              <li><a href="#">Kurti</a></li>
+            </ul> 
+          </li>
+      
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Collections <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Wedding Collection</a></li>
+              <li><a href="#">Puja Collection</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">SEASONAL</li>
+              <li><a href="#">Monsoon Collection</a></li>
+              <li><a href="#">Winter Collection</a></li>
+              <li><a href="#">Summer Collection</a></li>
+            </ul>
+          </li>
+      
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Action</a></li>
               <li><a href="#">Another action</a></li>
@@ -159,24 +235,36 @@
 <div class="row">
   <div class="col-md-3 col-sm-4 col-xs-6">
     <a href="#" class="thumbnail">
-      <img src="images/kurti.jpg" alt="...">
+      <img src="images/item1.jpg" alt="...">
     </a>
+    <p>Bansurya special</p>
+    <p>price:Rs 1200</p>
+
     </div>
   <div class="col-md-3 col-xs-6 col-sm-4 ">
     <a href="#" class="thumbnail">
-      <img src="images/kurti.jpg" alt="...">
+      <img src="images/item2.jpg" alt="...">
     </a>
+    <p>Bansurya special-silk</p>
+    <p>price:Rs 1200</p>
   </div>
 
   <div class="col-md-3 col-xs-6 col-sm-4">
     <a href="#" class="thumbnail">
-      <img src="images/kurti.jpg" alt="...">
+      <img src="images/item3.jpg" alt="...">
     </a>
+
+    <p>Bansurya special-sipon</p>
+    <p>price:Rs 1200</p>
     </div>
   <div class="col-md-3 col-xs-6 col-sm-4">
     <a href="#" class="thumbnail">
-      <img src="images/kurti.jpg" alt="...">
+      <img src="images/item1.jpg" alt="...">
     </a>
+
+    <p>Bansurya special-taat</p>
+    <p>price:Rs 1200</p>
+  
   </div>
 </div>
 </div>
@@ -231,5 +319,8 @@
     </footer>
 
 
+
+
 </body>
+
 </html>
