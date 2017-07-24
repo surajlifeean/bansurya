@@ -21,7 +21,7 @@
 
  /* nav bar*/
 .example3 .navbar-brand {
-  height: 80px;
+  height: 70px;
 }
 
 .example3 .nav >li >a {
@@ -73,7 +73,31 @@
     margin-left: 2px;
     vertical-align: middle;
 }
+/*font style*/
+@font-face {
+    font-family: myFirstFont;
+    src: url(sanam.TTF);
+}
 
+
+#navbar3 {
+    font-family: myFirstFont;
+    font-size: 20px;
+
+
+/*wish list icon */
+
+.wrapper {
+   position: relative;
+}
+
+.wrapper .glyphicon {
+   position: absolute;
+   top: 20px;
+   left: 100px;
+}
+
+}
 
   </style>
 
@@ -157,18 +181,13 @@
           </li>
       
           
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
+          <li>
+              <a href="#">Login/Register</a>
+
           </li>
+          <li>
+              <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+        </li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -233,9 +252,9 @@
 <div class="container">
 
 <div class="row">
-  <div class="col-md-3 col-sm-4 col-xs-6">
+  <div class="col-md-3 col-sm-4 col-xs-6 ">
     <a href="#" class="thumbnail">
-      <img src="images/item1.jpg" alt="...">
+      <img src="images/item1.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
     </a>
     <p>Bansurya special</p>
     <p>price:Rs 1200</p>
@@ -243,7 +262,7 @@
     </div>
   <div class="col-md-3 col-xs-6 col-sm-4 ">
     <a href="#" class="thumbnail">
-      <img src="images/item2.jpg" alt="...">
+      <img src="images/item2.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
     </a>
     <p>Bansurya special-silk</p>
     <p>price:Rs 1200</p>
@@ -251,7 +270,7 @@
 
   <div class="col-md-3 col-xs-6 col-sm-4">
     <a href="#" class="thumbnail">
-      <img src="images/item3.jpg" alt="...">
+      <img src="images/item3.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
     </a>
 
     <p>Bansurya special-sipon</p>
@@ -259,7 +278,7 @@
     </div>
   <div class="col-md-3 col-xs-6 col-sm-4">
     <a href="#" class="thumbnail">
-      <img src="images/item1.jpg" alt="...">
+      <img src="images/item1.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
     </a>
 
     <p>Bansurya special-taat</p>
