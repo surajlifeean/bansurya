@@ -22,3 +22,10 @@ Route::get('/item', function () {
 Route::get('/category', function () {
     return view('pages.categorylist');
 });
+
+Route::get('/paralax', function () {
+    return view('pages.paralex');
+});
+Route::get('/dashboard', function () {
+    return view('pages.dashboard');
+});

@@ -107,6 +107,67 @@
     border-color: #030033;
 }
 */
+.img-circle {
+
+    border-radius: 360px;
+    max-width: 80%;      
+    
+}
+
+.cardheader{
+  background-color: #FFB400;
+  background-size: cover;
+  height:90px;
+}
+.avatar{
+  position: relative;
+  top:-50px;
+  margin-bottom: -50px;
+}
+
+.avatar img{
+  vertical-align:center;
+  border-radius: 50%;
+  border:9px solid #fff;
+}
+
+.info{
+  padding: 4px 8px 10px;
+}
+
+.title{
+  margin-bottom: 4px;
+  font-size: 20px;
+  color: #262626;
+ 
+  vertical-align: middle;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+
+
   </style>
 
 
@@ -204,102 +265,166 @@
   </nav>
 </div>
   </div>
+<div class="cardheader">
 
-<div class="container">
+</div>
+<div class="avatar" align="center">
+         <img class="dpimage" src="images/demodp.jpg" width="139" height="139"  >
+      
+</div>
 
-<!--image slider -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
+<div class="info" align="center">
+      <div class="title" style="text-transform: capitalize;">Suraj Jeswara</div>
+      <div class="desc">
+ <div class="btn btn-file">       
+  <span class="glyphicon glyphicon-camera" aria-hidden="true"> Change
+      <form>
+           <input type="file">
+     </form>
+  </span> 
+</div>
 
-      <div class="item active">
-        <img src="images/banner1.jpg" alt="Los Angeles" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Banarasi  Saree</h3>
-          <p>It is always so much fun!</p>
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="images/banner2.jpg" alt="Chicago" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Fantastic Kurties</h3>
-          <p>Catchy and glazzy!</p>
-        </div>
-      </div>
     
-      <div class="item">
-        <img src="images/banner3.jpg" alt="New York" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Best Lehngas </h3>
-          <p>Special Collection Available!</p>
+
+<!--side bar-->
+    <div class="container" style="margin-top:-50px;">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>My Profile</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Personal Info</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">My Address</a>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Wishlist</a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span>Order Summary</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Returns</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Replacements</a>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                            </span>Account</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Change Password</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.jquery2dotnet.com">Notifications</a> <span class="label label-info">5</span>
+                                    </td>
+                                </tr>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="col-sm-9 col-md-9">
+            <div class="well">
+                <h1>
+                    Accordion Menu With Icon</h1>
+                Admin Dashboard Accordion Menu
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
-  
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-  <!--image slider ends-->
-<div class="container">
-
-<div class="row">
-  <div class="col-md-3 col-sm-4 col-xs-6 ">
-    <a href="#" class="thumbnail">
-      <img src="images/item1.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
-    </a>
-    <p>Bansurya special</p>
-    <p>price:Rs 1200</p>
-
-    </div>
-  <div class="col-md-3 col-xs-6 col-sm-4 ">
-    <a href="#" class="thumbnail">
-      <img src="images/item2.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
-    </a>
-    <p>Bansurya special-silk</p>
-    <p>price:Rs 1200</p>
-  </div>
-
-  <div class="col-md-3 col-xs-6 col-sm-4">
-    <a href="#" class="thumbnail">
-      <img src="images/item3.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
-    </a>
-
-    <p>Bansurya special-sipon</p>
-    <p>price:Rs 1200</p>
-    </div>
-  <div class="col-md-3 col-xs-6 col-sm-4">
-    <a href="#" class="thumbnail">
-      <img src="images/item1.jpg" alt="..."><span class="glyphicon glyphicon-heart"></span>
-    </a>
-
-    <p>Bansurya special-taat</p>
-    <p>price:Rs 1200</p>
-  
-  </div>
-</div>
 </div>
 
 
-    <footer class="footer-distributed">
 
-      <div class="footer-left">
+
+
+
+ <footer class="footer-distributed">
+
+      <div class="fodemodpleft">
 
         <h3>Ban<span>surya</span></h3>
 
