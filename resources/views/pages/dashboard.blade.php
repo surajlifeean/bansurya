@@ -162,6 +162,68 @@
     cursor: inherit;
     display: block;
 }
+
+.tab-pane{
+  position: relative;
+}
+
+.tab-content>.active{
+  display: block;
+}
+
+span.personalInfoValue {
+    color: #292929;
+    font-size: 18px;
+    font-family: 'montserratRegular';
+    width: 100%;
+    display: block;
+    padding: 2px 0;
+    }
+
+    .personalInfoWrapper label {
+    font-weight: 400;
+    font-family: 'montserratRegular';
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #9a9a9a;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+
+.personalInfoWrapper .personalInfoIcon:before {
+    display: inline-block;
+    font: normal normal normal 22px/1 FontAwesome;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    background: #f2f2f2;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 42px;
+    color: #292929;
+}
+
+.editBtn{
+      position: absolute;
+    top: -80px;
+    right: -16px;
+    background: #f2f2f2;
+    width: 75px;
+    height: 30px;
+    color: #292929;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    cursor: pointer;
+    font-family: 'montserratRegular';
+}
+}
 .glyphicon { margin-right:10px; }
 .panel-body { padding:0px; }
 .panel-body table tr td { padding-left: 15px }
@@ -304,19 +366,19 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Personal Info</a>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">Personal Info</a>
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">My Address</a>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">My Address</a>
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Wishlist</a>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="#">Wishlist</a>
                                     </td>
                                 </tr>
                                 
@@ -336,17 +398,17 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
+                                        <a href="#">Orders</a> <span class="label label-success">$ 320</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">Returns</a>
+                                        <a href="#">Returns</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">Replacements</a>
+                                        <a href="#">Replacements</a>
                                     </td>
                                 </tr>
                                 
@@ -366,12 +428,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">Change Password</a>
+                                        <a href="#">Change Password</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">Notifications</a> <span class="label label-info">5</span>
+                                        <a href="#">Notifications</a> <span class="label label-info">5</span>
                                     </td>
                                 </tr>
                                 </table>
@@ -382,10 +444,71 @@
         </div>
         <div class="col-sm-9 col-md-9">
             <div class="well">
-                <h1>
-                    Accordion Menu With Icon</h1>
-                Admin Dashboard Accordion Menu
-            </div>
+              <div class="tab-content">
+              <label>
+                      <U>  PERSONAL INFO</U></label>
+                      
+              <div class="tab-pane personalInfoWrapper active">
+                  <div class="personalInfoView">
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        FIRST NAME</label>
+                        <span class="personalInfoValue">
+                        Suraj
+                        </span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        LAST NAME</label>
+                        <span class="personalInfoValue">
+                        Jeswara
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+
+                      <label>
+                      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                        EMAIL ID</label>
+                        <span class="personalInfoValue">
+                        surajjeswara@yahoo.com
+                        </span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                        MOBILE NUMBER</label>
+                        <span class="personalInfoValue">
+                        8981527733
+                        </span>
+
+                    </div>
+
+                  </div>
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        NEWSLETTER SUBSCRIPTION</label>
+                        <span class="personalInfoValue">
+                        Email:Yes
+                        </span>
+                    </div>
+                    
+
+                  </div>
+                  <span class="editBtn" id="editPersonalInfo">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  Edit
+                  </span>
+             </div>
+              
         </div>
     </div>
 </div>
@@ -417,14 +540,14 @@
       </div>
 </div>
 
+</div>
 
 
 
 
+    <footer class="footer-distributed">
 
- <footer class="footer-distributed">
-
-      <div class="fodemodpleft">
+      <div class="footer-left">
 
         <h3>Ban<span>surya</span></h3>
 
@@ -469,6 +592,7 @@
       </div>
 
     </footer>
+
 
 
 
