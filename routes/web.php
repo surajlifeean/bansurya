@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+
     return view('pages.home');
 });
 
@@ -29,3 +30,7 @@ Route::get('/paralax', function () {
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
+
+Route::get('home','HomeController@index');
+
+Route::get('subproduct/{id}',['as'=>'subproduct.show', 'uses'=>'SubproductController@show']);
