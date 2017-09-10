@@ -33,4 +33,6 @@ Route::get('/dashboard', function () {
 
 Route::get('home','HomeController@index');
 
-Route::get('subproduct/{id}',['as'=>'subproduct.show', 'uses'=>'SubproductController@show']);
+Route::resource('product','ProductController');
+
+Route::post('auth/register','Auth\RegisterController@postRegister');

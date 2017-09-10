@@ -1,22 +1,38 @@
 
-<head>
+
   <title>Bansuriyaa @yield('title')</title> <!--change title in each page -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="css/demo.css">
-  <link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
+<link rel="stylesheet" href="http://127.0.0.1:8000/css/demo.css">
+  <link rel="stylesheet" href="http://127.0.0.1:8000/css/footer-distributed-with-contact-form.css">
 
 
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-  @yield('stylesheets')
   
 <style>
+
+
+ /* nav bar*/
+.example3 .navbar-brand {
+  height: 70px;
+
+}
+
+.example3 .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}
+.example3 .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
     .nav-tabs {
     margin-bottom: 15px;
 }
@@ -41,13 +57,26 @@ div#OR {
     background: #DFDFDF;
 }
 
+@font-face {
+    font-family: myFirstFont;
+    src: url(http://127.0.0.1:8000/sanam.TTF);
+}
+
+
+#navbar3 {
+    font-family: myFirstFont;
+    font-size: 20px;
+
+
+}
+
 </style>
 
 <script>
+
     $('#myModal').modal('show');
-// www.jquery2dotnet.com
+
 </script>
 
 
     
-</head>

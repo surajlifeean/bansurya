@@ -512,6 +512,9 @@ h1 {
                   </div>
                 </section>
                 </div>
+
+
+                
           <div class="col-md-4">
                    <p style=" font-family: myFirstFont;
     font-size: 30px;">Puja Special Saree-yellow-Red</p>
@@ -576,34 +579,24 @@ h1 {
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
+              <dl>
+                <dt>Description</dt>
+                <dd>Knitted Cotton Solid Top, Has A Round Neck And 3/4 Sleeves, Has Zip Detailing On The Sleeves
+
+              </dd>
+                <dt>Fabric</dt>
+                <dd>Single Jersey
+              </dd>
+
+              </dd>
+                <dt>Washcare
+              </dt>
+                <dd>Machine wash with mild detergent, do not bleach, tumble dry low, wash dark colours separately, warm iron, dry in shade out
+
+              </dd>
 
 
-
-
-
-
-
-
-
-
-<dl>
-  <dt>Description</dt>
-  <dd>Knitted Cotton Solid Top, Has A Round Neck And 3/4 Sleeves, Has Zip Detailing On The Sleeves
-
-</dd>
-  <dt>Fabric</dt>
-  <dd>Single Jersey
-</dd>
-
-</dd>
-  <dt>Washcare
-</dt>
-  <dd>Machine wash with mild detergent, do not bleach, tumble dry low, wash dark colours separately, warm iron, dry in shade out
-
-</dd>
-
-
-</dl>
+              </dl>
     
       </div>
     </div>
@@ -618,9 +611,7 @@ h1 {
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-        You can place a request for exchange or return any time within 30 days from the date you receive your shipment. We won't be able to process returns in case the request for returns is placed after 30 days from the date you receive your shipment. We recommend that if you need an alternate size or replacement, do get in touch with us at the earliest as your desired size may get sold out.
-
-Please note : All the products requested for returns must be unworn, unwashed products and should have the price tags and merchandise tags attached. Items that do not match these criteria are non-returnable and will be denied. We do not accept returns for accessories- jewelry,stockings and pantyhose for hygienic reasons. Bags and footwear can be exchanged.
+      We do not accept returns for accessories- jewelry,stockings and pantyhose for hygienic reasons. Bags and footwear can be exchanged.
       </div>
     </div>
   </div>

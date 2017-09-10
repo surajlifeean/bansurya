@@ -10,4 +10,6 @@ class Product_Image extends Model
 
     	return $this->belongsTo('App\subproduct','p_id');
     }
+
+    
 }

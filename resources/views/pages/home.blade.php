@@ -7,22 +7,6 @@
 
   <style>
 
- /* nav bar*/
-.example3 .navbar-brand {
-  height: 70px;
-
-}
-
-.example3 .nav >li >a {
-  padding-top: 30px;
-  padding-bottom: 30px;
-
-}
-.example3 .navbar-toggle {
-  padding: 10px;
-  margin: 25px 15px 25px 0;
-}
-
 /* image thubnails */
 
 .row {
@@ -64,18 +48,7 @@
     vertical-align: middle;
 }
 /*font style*/
-@font-face {
-    font-family: myFirstFont;
-    src: url(sanam.TTF);
-}
 
-
-#navbar3 {
-    font-family: myFirstFont;
-    font-size: 20px;
-
-
-}
 /*wish list icon */
 
 .wrapper {
@@ -158,13 +131,13 @@
 
 @foreach($subproduct as $sproduct)
   <div class="col-md-3 col-sm-4 col-xs-6 ">
-    <a href="{{route('subproduct.show',$sproduct->id)}}" class="thumbnail">
+    <a href="{{route('product.show',$sproduct->id)}}" class="thumbnail">
     @php
       $img=$sproduct->images[0]->name
     @endphp
         
                 
-      <img src="{{asset('images/'.$img)}}"  alt="bansuriya">
+      <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya">
     </a>
 
 <table width="100%">

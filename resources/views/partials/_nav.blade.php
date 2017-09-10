@@ -6,12 +6,11 @@
           <span class="glyphicon glyphicon-menu-hamburger"></span>
           
         </button>
-        <a href="http://disputebills.com"><img src="images/logo2.jpg" height="70px" weight="90px" alt="Dispute Bills">
+        <a href=""><img src="http://127.0.0.1:8000/images/logo2.jpg" height="70px" weight="90px" alt="Dispute Bills">
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="#">
           
      
       @foreach($category as $cat)
@@ -41,7 +40,7 @@
               <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
         </li>
         </ul>
-      </div>
+    </div>
       <!--/.nav-collapse -->
     </div>
     <!--/.container-fluid -->
@@ -69,7 +68,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="Login">
-                                <form role="form" class="form-horizontal">
+                                <form role="form" class="form-horizontal" action="auth/login" method="post">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
@@ -96,24 +95,15 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="Registration">
-                                <form role="form" class="form-horizontal">
+                                <form role="form" class="form-horizontal" action="auth/register" method="post">
+                                {!! csrf_field() !!}
                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 col-md-2 control-label">
+                                    <label for="name" class="col-sm-2 control-label">
                                         Name</label>
-                                    <div class="col-sm-10 col-md-10">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <select class="form-control">
-                                                    <option>Mr.</option>
-                                                    <option>Ms.</option>
-                                                    <option>Mrs.</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" placeholder="Name" />
-                                            </div>
-                                        </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" placeholder="Name" />
                                     </div>
+
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
@@ -126,7 +116,7 @@
                                     <label for="mobile" class="col-sm-2 control-label">
                                         Mobile</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="mobile" placeholder="Mobile" />
+                                        <input type="number" class="form-control" id="mobile" placeholder="Mobile" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -140,9 +130,9 @@
                                     <div class="col-sm-2">
                                     </div>
                                     <div class="col-sm-10">
-                                        <button type="button" class="btn btn-primary btn-sm">
+                                        <button type="submit" class="btn btn-primary btn-sm">
                                             Save & Continue</button>
-                                        <button type="button" class="btn btn-default btn-sm">
+                                        <button type="reset" class="btn btn-default btn-sm">
                                             Cancel</button>
                                     </div>
                                 </div>

@@ -29,4 +29,5 @@ class subproduct extends Model
     	return $this->belongsTo('App\Color','color');
     }
 
+
 }

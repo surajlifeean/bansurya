@@ -1,5 +1,5 @@
 
-    <footer class="footer-distributed">
+    <footer class="footer-distributed" >
 
       <div class="footer-left">
 
