@@ -95,7 +95,7 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="Registration">
-                                <form role="form" class="form-horizontal" action="auth/register" method="post">
+                                <form role="form" class="form-horizontal" action="/register" method="post">
                                 {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label for="name" class="col-sm-2 control-label">

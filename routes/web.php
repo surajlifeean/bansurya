@@ -36,3 +36,5 @@ Route::get('home','HomeController@index');
 Route::resource('product','ProductController');
 
 Route::post('auth/register','Auth\RegisterController@postRegister');
+
+Route::Auth();
