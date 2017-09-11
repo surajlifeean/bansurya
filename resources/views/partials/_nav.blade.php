@@ -6,7 +6,7 @@
           <span class="glyphicon glyphicon-menu-hamburger"></span>
           
         </button>
-        <a href=""><img src="http://127.0.0.1:8000/images/logo2.jpg" height="70px" weight="90px" alt="Dispute Bills">
+        <a href="{{route('home')}}"><img src="http://127.0.0.1:8000/images/logo2.jpg" height="70px" weight="90px" alt="Bansurya">
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
@@ -16,12 +16,19 @@
       @foreach($category as $cat)
 
              <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >{{$cat->title }}<span class="caret"></span></a>
+            <a href="{{route('category.show',$cat->id)}}">{{$cat->title }} 
+            <span class="caret dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></span></a>
+            
+            
             <ul class="dropdown-menu" role="menu">
             @foreach($subcategory as $subcat)
               
                 @if($subcat->category_id==$cat->id)
-              <li><a href="#">{{$subcat->name}}</a></li>
+                @php 
+                $mergeid=$cat->id*100000+$subcat->id;
+                @endphp
+              <li><a href="{{route('subcategory.show',$mergeid)}}">{{$subcat->name}}</a></li>
+
                 @endif
             @endforeach
             </ul>
@@ -95,13 +102,13 @@
                                 </form>
                             </div>
                             <div class="tab-pane" id="Registration">
-                                <form role="form" class="form-horizontal" action="/register" method="post">
+                                <form role="form" class="form-horizontal"  method="POST" action="{{ route('register') }}">
                                 {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label for="name" class="col-sm-2 control-label">
                                         Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder="Name" />
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" />
                                     </div>
 
                                 </div>
@@ -109,21 +116,21 @@
                                     <label for="email" class="col-sm-2 control-label">
                                         Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" />
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
                                     </div>
                                 </div>
-                                <div class="form-group">
+                               <!--  <div class="form-group">
                                     <label for="mobile" class="col-sm-2 control-label">
                                         Mobile</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="mobile" placeholder="Mobile" />
+                                        <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" />
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="password" class="col-sm-2 control-label">
                                         Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" placeholder="Password" />
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="row">

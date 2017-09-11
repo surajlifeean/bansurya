@@ -11,18 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Auth::routes();
 
-    return view('pages.home');
-});
 
 Route::get('/item', function () {
     return view('pages.productview');
 });
 
-Route::get('/category', function () {
-    return view('pages.categorylist');
-});
+// Route::get('/category', function () {
+//     return view('pages.categorylist');
+// });
 
 Route::get('/paralax', function () {
     return view('pages.paralex');
@@ -31,10 +29,19 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
 
+
 Route::get('home','HomeController@index');
 
 Route::resource('product','ProductController');
 
-Route::post('auth/register','Auth\RegisterController@postRegister');
 
-Route::Auth();
+Route::resource('category','ProductbycategoryController');
+
+Route::resource('subcategory','ProductbysubcategoryController');
+
+// Route::post('auth/register','Auth\RegisterController@postRegister');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+?>
