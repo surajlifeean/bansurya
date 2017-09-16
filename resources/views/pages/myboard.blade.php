@@ -1,95 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="css/demo.css">
-  <link rel="stylesheet" href="css/footer-distributed-with-contact-form.css">
+@extends('main')
 
 
-  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@section('stylesheets')
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <style>
- 
-
- /* nav bar*/
-.example3 .navbar-brand {
-  height: 70px;
-
-}
-
-.example3 .nav >li >a {
-  padding-top: 30px;
-  padding-bottom: 30px;
-
-}
-.example3 .navbar-toggle {
-  padding: 10px;
-  margin: 25px 15px 25px 0;
-}
-
-/* image thubnails */
-
-.row {
-    margin: 80px 0px 80px 0px;
-    }
-
-
-.thumbnail {
-    margin: 10px 10px 10px 10px;
-    -webkit-transform: scale(1, 1);
-    -ms-transform: scale(1, 1);
-    transform: scale(1, 1);
-    transition-duration: 0.3s;
-    -webkit-transition-duration: 0.3s; /* Safari */
-    }
-
-.thumbnail:hover {
-  cursor: pointer;
-  -webkit-transform: scale(1.1, 1.1);
-    -ms-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-    transition-duration: 0.5s;
-    -webkit-transition-duration: 0.3s; /* Safari */
-    box-shadow: 10px 10px 5px #888888;
-    z-index: 1;
-    }
-
-
-/*on hover menu*/
-.caret-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid rgba(0, 0, 0, 0);
-    border-right: 4px solid rgba(0, 0, 0, 0);
-    border-bottom: 4px solid;
-    
-    display: inline-block;
-    margin-left: 2px;
-    vertical-align: middle;
-}
-/*font style*/
-@font-face {
-    font-family: myFirstFont;
-    src: url(sanam.TTF);
-}
-
-
-#navbar3 {
-    font-family: myFirstFont;
-    font-size: 20px;
-
-
-}
-/*wish list icon */
-
+<style type="text/css">
 .wrapper {
    position: relative;
 }
@@ -233,100 +147,14 @@ span.personalInfoValue {
   </style>
 
 
-  <script>
 
-  if ( $(window).width() > 770) {      
-  
-          $(function(){
-    $(".dropdown").hover(            
-            function() {
-                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
-                $(this).toggleClass('open');
-                $('b', this).toggleClass("caret caret-up");                
-            },
-            function() {
-                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
-                $(this).toggleClass('open');
-                $('b', this).toggleClass("caret caret-up");                
-            });
-    });
-    }
-    else{
-         ;
-           
-}
+@endsection
 
-  </script>
-    
-</head>
-<body>
 
-<div class="example3">
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar3">
-          <span class="glyphicon glyphicon-menu-hamburger"></span>
-          
-        </button>
-        <a href="http://disputebills.com"><img src="images/logo2.jpg" height="70px" weight="90px" alt="Dispute Bills">
-        </a>
-      </div>
-      <div id="navbar3" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="#">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Trending <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu" >
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-      
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Ethnic Wear <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu" >
-              <li><a href="#">Saree</a></li>
-              <li><a href="#">Lehenga</a></li>
-              <li><a href="#">Salwar</a></li>
-              <li><a href="#">Kurti</a></li>
-            </ul> 
-          </li>
-      
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >Collections <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Wedding Collection</a></li>
-              <li><a href="#">Puja Collection</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">SEASONAL</li>
-              <li><a href="#">Monsoon Collection</a></li>
-              <li><a href="#">Winter Collection</a></li>
-              <li><a href="#">Summer Collection</a></li>
-            </ul>
-          </li>
-      
-          
-          <li>
-              <a href="#">Login/Register</a>
 
-          </li>
-          <li>
-              <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
-        </li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
-    <!--/.container-fluid -->
-  </nav>
-</div>
-  </div>
+@section('content')
+
+
 <div class="cardheader">
 
 </div>
@@ -338,7 +166,7 @@ span.personalInfoValue {
 
 <div class="info" align="center">
       <div class="title" style="text-transform: capitalize;">Suraj Jeswara</div>
-      <div class="desc">
+      
  <div class="btn btn-file">       
   <span class="glyphicon glyphicon-camera" aria-hidden="true"> Change
       <form>
@@ -347,7 +175,7 @@ span.personalInfoValue {
   </span> 
 </div>
 
-    
+  </div> 
 
 <!--side bar-->
     <div class="container" style="margin-top:-50px;">
@@ -513,90 +341,44 @@ span.personalInfoValue {
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
+</div>
 </div>
 
 </div>
+<!-- container ends
+ -->
+
+ @endsection
 
 
 
+@section('scripts')
 
-    <footer class="footer-distributed">
+  <script>
 
-      <div class="footer-left">
+  if ( $(window).width() > 770) {      
+  
+          $(function(){
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            });
+    });
+    }
+    else{
+         ;
+           
+}
 
-        <h3>Ban<span>surya</span></h3>
-
-        <p class="footer-links">
-          <a href="#">Home</a>
-          ·
-          <a href="#">Blog</a>
-          ·
-          <a href="#">Pricing</a>
-          ·
-          <a href="#">About</a>
-          ·
-          <a href="#">Faq</a>
-          ·
-          <a href="#">Contact</a>
-        </p>
-
-        <p class="footer-company-name">Bansuriya &copy; 2015</p>
-
-        <div class="footer-icons">
-
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-
-        </div>
-
-      </div>
-
-      <div class="footer-right">
-
-        <p>Contact Us</p>
-
-        <form action="#" method="post">
-
-          <input type="text" name="email" placeholder="Email" />
-          <textarea name="message" placeholder="Message"></textarea>
-          <button>Send</button>
-
-        </form>
-
-      </div>
-
-    </footer>
+  </script>
 
 
 
-
-
-</body>
-
-</html>
+@endsection

@@ -85,9 +85,34 @@ class ProductbysubcategoryController extends Controller
                     ->get();
 
 
+             $colors=array();
+            foreach($subproduct as $sp){
+                $colors[]=$sp->color;
+            }
+
+            $colors=array_unique($colors);
+        
+            $sortcolor = DB::table('colors')
+                    ->whereIn('id', $colors)
+                    ->get();
+
+
+            $size=array();
+            foreach ($subproduct as $sp) {
+                 $size[]=$sp->size;
+            }
+
+             $size=array_unique($size);
+        
+            $sortsize = DB::table('sizes')
+                    ->whereIn('id', $size)
+                    ->get();
+
+
+
    // dd($oneimage);
 
-        return view('pages.productlisting')->withSubproducts($subproduct)->withCategory($category)->withSubcategory($Subcategory)->withImages($oneimage);
+        return view('pages.productlisting')->withSubproducts($subproduct)->withCategory($category)->withSubcategory($Subcategory)->withImages($oneimage)->withColors($sortcolor)->withSizes($sortsize);
 
 
     }

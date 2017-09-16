@@ -23,8 +23,15 @@
     });
     }
     else{
-         ;
+          $(document).ready(function(){
+
+                       $('.caret').css('float','right');
+                       
+          });
+
+    }
+         
            
-}
+
 
   </script>

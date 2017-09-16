@@ -8,11 +8,11 @@
         <p class="footer-links">
           <a href="#">Home</a>
           ·
-          <a href="#">Blog</a>
+          <a href="{{route('policy')}}">Privacy Policy</a>
           ·
           <a href="#">Pricing</a>
           ·
-          <a href="#">About</a>
+          <a href="{{route('aboutus')}}">About Us</a>
           ·
           <a href="#">Faq</a>
           ·

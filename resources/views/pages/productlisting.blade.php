@@ -1,11 +1,16 @@
-{{dump($subproducts)}}
-{{dump($images)}}
+<!-- {{dump($subproducts)}}
 
+{{dump($sizes)}}
+ -->
 
 
 @extends('main')
 
 @section('stylesheets')
+
+ <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+
 	<style>
 
 /*filter*/
@@ -121,6 +126,20 @@
 }
 
 
+
+
+.color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+  width: 2em;
+  border-radius: 2px; }
+  .color:first-of-type {
+    margin-left: 20px; }
+
+
+
  </style>
 
 
@@ -169,43 +188,35 @@
                     </h4>
                   </div>
                   <div id="collapse0" class="panel-collapse collapse" >
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="">
-                            0 - 1000
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox" >
-                          <label>
-                            <input type="checkbox" value="">
-                            1000 - 2000
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox"  >
-                          <label>
-                            <input type="checkbox" value="">
-                            2000 - 6000
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox"  >
-                          <label>
-                            <input type="checkbox" value="">
-                            More Than 6000
-                          </label>
-                        </div>
-                      </li>
-                    </ul>
+                     <p>
+         <label for = "price">Price range:</label><br>
+
+         <div class="row">
+         	<div class="col-md-6 col-sm-6 col-xs-6">
+        Min:<input type = "text" id = "start_price" name="start_price" class="form-control"><br>
+         <!-- 
+            style = "border:0; color:#337ab7; font-weight:bold;">
+
+ --> 
+ 			</div>
+ 			<div class="col-md-6 col-sm-6 col-xs-6">
+
+        Max:<input type= "text" id="end_price" name="end_price" class="form-control">
+ 			</div>
+
+ 		</div>
+      </p>
+      <div id = "slider-3"></div>
+ 
+
                   </div>
 
-                  <div class="panel-heading " >
+                  <div id="showPrice"></div>
+                  <div id="showDiv"></div>
+<!-- 
+ <button onclick="send()">Click</button>
+              -->
+                 <!--  <div class="panel-heading " >
                     <h4 class="panel-title">
                       <a data-toggle="collapse" href="#collapse1">
                         <i class="indicator fa fa-caret-right" aria-hidden="true"></i>Type
@@ -249,38 +260,31 @@
                     
                     </ul>
                   </div>
-                  <div class="panel-heading" >
+                  -->
+
+                   <div class="panel-heading" >
                     <h4 class="panel-title">
                       <a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-right" aria-hidden="true"></i> Color</a>
                     </h4>
                   </div>
                   <div id="collapse3" class="panel-collapse collapse">
-                    <ul class="list-group">
-                      <li class="list-group-item">
+                    <div class="row">
+                      
+                    @foreach($colors as $color)
+
+                      <div class="col-md-6 col-xs-6" style="margin-top: 10px;">
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" value="">
-                            red
+                            <input type="checkbox" value="{{$color->id}}">
+								              <div class="color" style="background-color:{{$color->color_code}};">   
+								              </div>
                           </label>
                         </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox" >
-                          <label>
-                            <input type="checkbox" value="">
-                            blue
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox"  >
-                          <label>
-                            <input type="checkbox" value="">
-                            green
-                          </label>
-                        </div>
-                      </li>
-                    </ul>
+                      </div>
+                      
+					@endforeach
+
+                       </div>
                   </div>
                   <div class="panel-heading" >
                     <h4 class="panel-title">
@@ -289,30 +293,17 @@
                   </div>
                   <div id="collapse2" class="panel-collapse collapse">
                     <ul class="list-group">
+                   
+                    @foreach($sizes as $size)
                       <li class="list-group-item">
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" value="">
-                            7
+                            <input type="checkbox" value="{{$size->id}}">
+                            {{$size->name}}
                           </label>
                         </div>
                       </li>
-                      <li class="list-group-item">
-                        <div class="checkbox" >
-                          <label>
-                            <input type="checkbox" value="">
-                            8
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="">
-                            9
-                          </label>
-                        </div>
-                      </li>
+                      @endforeach
                     </ul>
                   </div>
                 </div>
@@ -384,9 +375,13 @@
 
 
 @section('scripts')
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      
 	
 
   <script>
+
 
 /*filter script to change the icons*/
 $(function() {
@@ -435,4 +430,48 @@ $(function() {
 
   </script>
 
+ <script>
+         $(function() {
+            $( "#slider-3" ).slider({
+               range:true,
+               min: 200,
+               max: 10000,
+               values: [ 100, 1500 ],  // setting the initial value
+               slide: function( event, ui ) {
+                  $( "#start_price" ).val(ui.values[ 0 ]);
+                  $( "#end_price" ).val(ui.values[ 1 ]);
+               }
+            });
+
+            $( "#price" ).val( "Rs" + $( "#slider-3" ).slider( "values", 0 ) +
+               " - Rs" + $( "#slider-3" ).slider( "values", 1 ) );
+         });
+      </script>
+
+<!--       <script>
+
+      	function send(){
+
+      		var start=$("#start_price").val();
+      		var end=$("#end_price").val();
+      		// alert(start+end);
+
+      		$.ajax({
+               type:'GET',
+               url:'post.php',
+               data:{start:start},
+               success:function(data){
+                
+                $.each(data,function(index,data){
+                   $('#showDiv').append(data);
+                 });
+                 
+               }
+            });
+
+}
+      
+
+      </script>
+ -->
 @endsection

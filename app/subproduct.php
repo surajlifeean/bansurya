@@ -28,6 +28,10 @@ class subproduct extends Model
 
     	return $this->belongsTo('App\Color','color');
     }
+        public function carts(){
+
+        return $this->belongsToMany('App\cart','subproduct_cart');
+    }
 
 
 }

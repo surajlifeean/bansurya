@@ -15,9 +15,10 @@
      
       @foreach($category as $cat)
 
-             <li class="dropdown">
-            <a href="{{route('category.show',$cat->id)}}">{{$cat->title }} 
-            <span class="caret dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></span></a>
+            <li class="dropdown" style="margin-top: 10px; margin-right: 10px;">
+
+            <a href="{{route('category.show',$cat->id)}}" style="display: inline">{{$cat->title }} 
+            </a><span class="caret dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></span>
             
             
             <ul class="dropdown-menu" role="menu">
@@ -39,12 +40,46 @@
           <li>
             
 
-              <a data-toggle="modal" data-target="#myModal">
-    Login/Register</a>
+
+
+                        @if (Auth::guest())
+                                  <a data-toggle="modal" data-target="#myModal">
+                                        Login/Register
+                                        </a>    
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <span class="glyphicon glyphicon-user"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    <li style="margin-left: 5px">
+                                       <a href="/dashboard">
+                                       My Profile
+                                   </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+
 
           </li>
           <li>
-              <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+              <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="badge" style="margin-top:-25px; margin-left:-15px; font-family: auto;">42</span></a>
         </li>
         </ul>
     </div>
@@ -75,75 +110,186 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="Login">
-                                <form role="form" class="form-horizontal" action="auth/login" method="post">
-                                <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">
-                                        Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email1" placeholder="Email" />
-                                    </div>
+                                
+
+                                <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1" class="col-sm-2 control-label">
-                                        Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Forgot Your Password?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+<!-- 
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-sm">
-                                            Submit</button>
-                                        <a href="javascript:;">Forgot your password?</a>
-                                    </div>
-                                </div>
-                                </form>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Forgot Your Password?
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+ -->
+
+
+
+
+
                             </div>
                             <div class="tab-pane" id="Registration">
-                                <form role="form" class="form-horizontal"  method="POST" action="{{ route('register') }}">
-                                {!! csrf_field() !!}
-                                <div class="form-group">
-                                    <label for="name" class="col-sm-2 control-label">
-                                        Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" />
-                                    </div>
+                                <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">
-                                        Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
-                                    </div>
-                                </div>
-                               <!--  <div class="form-group">
-                                    <label for="mobile" class="col-sm-2 control-label">
-                                        Mobile</label>
-                                    <div class="col-sm-10">
-                                        <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" />
-                                    </div>
-                                </div> -->
-                                <div class="form-group">
-                                    <label for="password" class="col-sm-2 control-label">
-                                        Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary btn-sm">
-                                            Save & Continue</button>
-                                        <button type="reset" class="btn btn-default btn-sm">
-                                            Cancel</button>
-                                    </div>
-                                </div>
-                                </form>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                             </div>
                         </div>
                         <div id="OR" class="hidden-xs">

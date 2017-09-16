@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 
-use App\Category;
+use App\Cart;
 
-use App\subproduct;
 
-use App\Subcategory;
+use App\Wishlist;
 
-class ProductController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -41,7 +40,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // dd($request);
+
+        $wishlist=Wishlist::select('*')->where('user_id','=',$request->id)->first();
+
+        if(count($wishlist)==0)
+        {
+            $wishlist=new Wishlist;
+            $wishlist->user_id=$request->id;
+            $wishlist->save();
+         }
+
+         // else{
+
+         //    $wishlist->user_id=$request->id;
+         //    $wishlist->save();
+         // }
+
+
+        Session::flash('success','Your Wish List is Updated!!');
+
+         return redirect()->route('product.show',$request->subproduct);
+
+
+        // else{
+        //     $
+        // }
     }
 
     /**
@@ -51,15 +75,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {       
-            //dd($id);
-            $subproducts=subproduct::find($id);
-            //dd($subproducts->product->name);
-           // dd($subproducts->images);
-
-            $category=Category::all(); //for nav bar
-            $Subcategory=Subcategory::all();
-        return view('pages.view')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts)->withImages($subproducts->images);
+    {
+        //
     }
 
     /**
@@ -95,29 +112,4 @@ class ProductController extends Controller
     {
         //
     }
-
-    public function register(Request $data)
-    {
-    dd($data);
-
-        $this->validate($data,array(
-
-        
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ));
-
-        $user=new User;
-        $user->name=$data->name;
-        $user->email=$data->email;
-        $user->password=$data->password;
-
-        $user->save();
-
-
-
-    }
-
-
 }

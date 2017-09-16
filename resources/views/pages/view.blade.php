@@ -160,7 +160,7 @@
 							<span class="size" data-toggle="tooltip" title="large">l</span>
 							<span class="size" data-toggle="tooltip" title="xtra large">xl</span> -->
 						</h5>
-						<h5 class="colors">colors: <div class="color" style="background-color:{{$subproduct->getcolor->name}};">
+						<h5 class="colors">colors: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};">
 						</div>
 							<!-- <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
 							<span class="color green"></span>
@@ -168,7 +168,21 @@
 						 --></h5>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+							
+
+
+    {!!Form::open(array('route'=>'wishlist.store'))!!}
+
+  <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct">
+
+  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
+  
+  
+              <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button>
+
+  {!!Form::close()!!}
+
+
 						</div>
 					</div>
 
@@ -179,9 +193,8 @@
     margin-top: 200px;
 ">
 
-     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="
-    margin-top: 20px;
-">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="
+    margin-top:20px;">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">

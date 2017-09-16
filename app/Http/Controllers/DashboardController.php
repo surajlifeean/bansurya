@@ -11,7 +11,7 @@ use App\subproduct;
 
 use App\Subcategory;
 
-class ProductController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+
+
+    $category=Category::all();
+    $Subcategory=Subcategory::all();
+
+        return view('account.myboard')->withCategory($category)->withSubcategory($Subcategory);
     }
 
     /**
@@ -51,15 +56,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {       
-            //dd($id);
-            $subproducts=subproduct::find($id);
-            //dd($subproducts->product->name);
-           // dd($subproducts->images);
-
-            $category=Category::all(); //for nav bar
-            $Subcategory=Subcategory::all();
-        return view('pages.view')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts)->withImages($subproducts->images);
+    {
+        //
     }
 
     /**
@@ -95,29 +93,4 @@ class ProductController extends Controller
     {
         //
     }
-
-    public function register(Request $data)
-    {
-    dd($data);
-
-        $this->validate($data,array(
-
-        
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ));
-
-        $user=new User;
-        $user->name=$data->name;
-        $user->email=$data->email;
-        $user->password=$data->password;
-
-        $user->save();
-
-
-
-    }
-
-
 }

@@ -25,17 +25,25 @@ Route::get('/item', function () {
 Route::get('/paralax', function () {
     return view('pages.paralex');
 });
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('pages.dashboard');
+// });
 
 
 Route::get('home','HomeController@index');
+
+//Route::post('register','ProductController@register');
 
 Route::resource('product','ProductController');
 
 
 Route::resource('category','ProductbycategoryController');
+
+
+Route::resource('wishlist','WishlistController');
+
+
+Route::resource('dashboard','DashboardController');
 
 Route::resource('subcategory','ProductbysubcategoryController');
 
@@ -43,5 +51,12 @@ Route::resource('subcategory','ProductbysubcategoryController');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/aboutus', 'StaticpagesController@aboutus')->name('aboutus');
+
+
+Route::get('/policy', 'StaticpagesController@policy')->name('policy');
+
 
 ?>

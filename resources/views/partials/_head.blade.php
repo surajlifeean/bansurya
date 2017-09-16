@@ -64,10 +64,15 @@ div#OR {
 
 
 #navbar3 {
-    font-family: myFirstFont;
+        font-family: myFirstFont;
+
     font-size: 20px;
 
 
+}
+.staticheading{
+
+    font-family: myFirstFont;
 }
 
 </style>

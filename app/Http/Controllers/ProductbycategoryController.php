@@ -77,15 +77,42 @@ class ProductbycategoryController extends Controller
     $images=Product_Image::select(DB::raw("min(id) as id"))
     ->groupBy('p_id')
             ->get();
+
+             $colors=array();
+            foreach($subproduct as $sp){
+                $colors[]=$sp->color;
+            }
+
+            $colors=array_unique($colors);
+        
+
+    //dd($colors);
+
+
+    $sortcolor = DB::table('colors')
+                    ->whereIn('id', $colors)
+                    ->get();
+
     
     $oneimage = DB::table('product__images')
                     ->whereIn('id', $images)
                     ->get();
 
+      $size=array();
+            foreach ($subproduct as $sp) {
+                 $size[]=$sp->size;
+            }
+
+             $size=array_unique($size);
+        
+            $sortsize = DB::table('sizes')
+                    ->whereIn('id', $size)
+                    ->get();
+
 
    // dd($oneimage);
 
-        return view('pages.productlisting')->withSubproducts($subproduct)->withCategory($category)->withSubcategory($Subcategory)->withImages($oneimage);
+        return view('pages.productlisting')->withSubproducts($subproduct)->withCategory($category)->withSubcategory($Subcategory)->withImages($oneimage)->withColors($sortcolor)->withSizes($sortsize);
 
     
     }
