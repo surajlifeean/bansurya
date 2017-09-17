@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 
 use App\Profileimage;
 class ProfileimageController extends Controller
@@ -37,25 +38,44 @@ class ProfileimageController extends Controller
     public function store(Request $request)
     {
 
-        $img=new Profileimage;
 
-        dd($request);
+
+        $imgc=Profileimage::select('id')->where('user_id','=',Auth::user()->id)->first();
+
+        if(count($imgc)==0){
+
+            $img=new Profileimage;
+}
+        else{
+
+            $img=Profileimage::find($imgc->id);           
+        }
+
 
         if($request->hasFile('pp')){
-            $pp=$request->file('pp');
-            //dd($image);
-            $filename=time().'.'.$pp->getClientOriginalExtension();//part of image intervention library
-            $location=public_path('/images/'.$filename);
-            
-            // use $location='images/'.$filename; on a server
-            Image::make($pp)->resize(750,1000)->save($location);
+
+
+        $image=$request->file('pp');
+
+        $filename=time().'.'.$image->getClientOriginalExtension();
+
+
+         $location=public_path('images/'.$filename);
+
+
+         move_uploaded_file($_FILES["pp"]["tmp_name"], $location);
+
+
+
 
             $img->image=$filename;
 
             $img->user_id=Auth::user()->id;
-            
-            $img->save();
 
+            $img->save();
+       
+
+           
         }
 
 

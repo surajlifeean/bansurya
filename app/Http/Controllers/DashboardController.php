@@ -11,6 +11,11 @@ use App\subproduct;
 
 use App\Subcategory;
 
+use App\Profileimage;
+
+
+use Auth;
+
 class DashboardController extends Controller
 {
     /**
@@ -21,11 +26,12 @@ class DashboardController extends Controller
     public function index()
     {
 
+    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
 
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
-        return view('account.myboard')->withCategory($category)->withSubcategory($Subcategory);
+        return view('account.myboard')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
     }
 
     /**

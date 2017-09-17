@@ -8,6 +8,11 @@ use App\Category;
 
 use App\Subcategory;
 
+
+use App\Profileimage;
+
+use Auth;
+
 class ChangepwdController extends Controller
 {
     /**
@@ -17,10 +22,14 @@ class ChangepwdController extends Controller
      */
     public function index()
     {
+
+
+            $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+
         $category=Category::all();
     $Subcategory=Subcategory::all();
 
-        return view('account.changepwd')->withCategory($category)->withSubcategory($Subcategory);
+        return view('account.changepwd')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
     
     }
 

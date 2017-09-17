@@ -4,8 +4,14 @@
 </div>
 
 <div class="avatar" align="center">
-         <img class="dpimage" src="images/Kurti.jpg" width="139" height="139"  >
+
+	@if(count($imagedet)==0)
+
+         <img class="dpimage" src="{{asset('images/default.png')}}" width="139" height="139"  >
+    @else
+         <img class="dpimage" src="{{asset('images/'.$imagedet->image)}}" width="139" height="139"  >
       
+     @endif
 </div>
 
 

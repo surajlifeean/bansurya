@@ -23,6 +23,7 @@ use App\Product_Image;
 
 use Auth;
 
+use App\Profileimage;
 class WishlistController extends Controller
 {
     /**
@@ -33,6 +34,7 @@ class WishlistController extends Controller
     public function index()
     {
 
+        $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
 
     $category=Category::all();
     $Subcategory=Subcategory::all();
@@ -46,7 +48,7 @@ class WishlistController extends Controller
 
     // dd($products);
     
-        return view('account.wishlist')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts);        
+        return view('account.wishlist')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts)->withImagedet($image);        
     }
 
     /**

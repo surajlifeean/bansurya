@@ -9,6 +9,10 @@ use App\Category;
 
 use App\Subcategory;
 
+
+use App\Profileimage;
+
+use Auth;
 class AddressController extends Controller
 {
     /**
@@ -19,10 +23,12 @@ class AddressController extends Controller
     public function index()
     {
         //
+            $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+
         $category=Category::all();
     $Subcategory=Subcategory::all();
 
-        return view('account.address')->withCategory($category)->withSubcategory($Subcategory);
+        return view('account.address')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
     
     }
 
