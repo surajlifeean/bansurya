@@ -168,7 +168,7 @@ span.personalInfoValue {
             <div class="well">
               <div class="tab-content">
               <label>
-                      <U>  PERSONAL INFO</U></label>
+                      <U>ADDRESS</U></label>
                       
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
@@ -176,17 +176,20 @@ span.personalInfoValue {
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         NAME</label>
-                        <span class="personalInfoValue">
-                        {{Auth::user()->name}}
-                        </span>
-                    </div>
+                    
+                        <input id="full-name" name="full-name" type="text" placeholder="full name"
+                        class="input-xlarge form-control">
+                        <p class="help-block"></p>
+                    
+                  </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label>
-                      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                        EMAIL ID</label>
-                        <span class="personalInfoValue">
-                          {{Auth::user()->email}}
-                        </span>
+                      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        ADDRESS 1</label>
+                       
+                        <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
+                        class="input-xlarge form-control">
+                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
                    
 
                     </div>
@@ -196,20 +199,44 @@ span.personalInfoValue {
                   <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                         <label>
-                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                        NEWSLETTER SUBSCRIPTION</label>
-                        <span class="personalInfoValue">
-                        Email:Yes
-                        </span>
+                      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        ADDRESS 2</label>
+                       
+                       <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
+                        class="input-xlarge form-control">
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
                    
                        </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label>
-                      <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
-                        MOBILE NUMBER</label>
-                        <span class="personalInfoValue">
-                        8981527733
-                        </span>
+                      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                        CITY/TOWN</label>
+                        <input id="city" name="city" type="text" placeholder="city" class="input-xlarge form-control">
+                        <p class="help-block"></p>
+                    </div>
+
+                  </div>
+
+
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                        <label>
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        STATE</label>
+                       
+                       
+                       <input id="region" name="region" type="text" placeholder="state / province / region"
+                        class="input-xlarge form-control">
+                        <p class="help-block"></p>
+
+                   </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                        POSTAL CODE</label>
+                        <input id="region" name="region" type="text" placeholder="Postal Code"
+                        class="input-xlarge form-control">
+                        <p class="help-block"></p>
 
                     </div>
 
@@ -242,5 +269,8 @@ span.personalInfoValue {
 
 
 @section('scripts')
+
+
+
 
 @endsection

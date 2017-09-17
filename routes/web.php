@@ -43,9 +43,20 @@ Route::resource('category','ProductbycategoryController');
 Route::resource('wishlist','WishlistController');
 
 
+Route::resource('cart','CartController');
+
+
 Route::resource('dashboard','DashboardController');
 
 Route::resource('subcategory','ProductbysubcategoryController');
+
+
+Route::resource('changepwd','ChangepwdController');
+
+
+Route::resource('profileimg','ProfileimageController');
+
+Route::resource('address','AddressController');
 
 // Route::post('auth/register','Auth\RegisterController@postRegister');
 

@@ -168,7 +168,7 @@ span.personalInfoValue {
             <div class="well">
               <div class="tab-content">
               <label>
-                      <U>  PERSONAL INFO</U></label>
+                      <U>CHANGE PASSWORD</U></label>
                       
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">

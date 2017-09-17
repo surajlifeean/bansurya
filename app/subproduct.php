@@ -30,8 +30,12 @@ class subproduct extends Model
     }
         public function carts(){
 
-        return $this->belongsToMany('App\cart','subproduct_cart');
+        return $this->belongsToMany('App\cart','subproduct_carts');
     }
 
+                public function wishlists(){
+
+        return $this->belongsToMany('App\Wishlist','subproduct_wishlists');
+    }
 
 }

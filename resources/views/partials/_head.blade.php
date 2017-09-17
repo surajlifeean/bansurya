@@ -15,8 +15,8 @@
 
   
 <style>
-
-
+/*
+body { padding-top: 70px; }*/
  /* nav bar*/
 .example3 .navbar-brand {
   height: 70px;

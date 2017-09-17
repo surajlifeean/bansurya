@@ -167,10 +167,35 @@
 							<span class="color blue"></span>
 						 --></h5>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+
+@if (Auth::guest())
+  
+     <a data-toggle="modal" data-target="#myModal">
+              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+
+@else
+    {!!Form::open(array('route'=>'cart.store'))!!}
+
+  <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
+
+  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+  
+  
+              <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
+
+   {!!Form::close()!!}
+
+@endif
+
+
 							
 
+@if (Auth::guest())
+  
+     <a data-toggle="modal" data-target="#myModal">
+                                        <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button> </a>  
 
+@else
     {!!Form::open(array('route'=>'wishlist.store'))!!}
 
   <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct">
@@ -182,6 +207,7 @@
 
   {!!Form::close()!!}
 
+@endif
 
 						</div>
 					</div>

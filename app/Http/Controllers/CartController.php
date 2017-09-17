@@ -4,26 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\subproduct_cart;
 
-use App\Cart;
+use App\cart;
 
 use Session;
 
-use App\subproduct_wishlist;
-
-use App\Wishlist;
-
 use App\Category;
-
-use App\subproduct;
 
 use App\Subcategory;
 
-use App\Product_Image;
-
-use Auth;
-
-class WishlistController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,20 +24,9 @@ class WishlistController extends Controller
     public function index()
     {
 
-
     $category=Category::all();
     $Subcategory=Subcategory::all();
-    $subproduct=subproduct::all();
-
-    $id=Auth::user()->id;
-
-    $wishlist=Wishlist::select('id')->where('user_id','=',$id)->first();
-
-    $subproducts=Wishlist::find($wishlist->id)->subproducts()->distinct('subproduct_id')->get();
-
-    // dd($products);
-    
-        return view('account.wishlist')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts);        
+        return view('account.cart')->withCategory($category)->withSubcategory($Subcategory);
     }
 
     /**
@@ -67,28 +47,33 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
+        //
 
-        $wishlist=Wishlist::select('*')->where('user_id','=',$request->id)->first();
+        // dd($request);
 
-        if(count($wishlist)==0)
+// creating a new instance of cart for the new user
+
+        $cart=Cart::select('*')->where('user_id','=',$request->user_id)->first();
+
+        if(count($cart)==0)
         {
-            $wishlist=new Wishlist;
-            $wishlist->user_id=$request->id;
-            $wishlist->save();
+            $cart=new cart;
+            $cart->user_id=$request->user_id;
+            $cart->save();
          }
 
-         $subproduct_wishlist=new subproduct_wishlist;
+         $subproduct_cart=new subproduct_cart;
 
-         $subproduct_wishlist->subproduct_id=$request->subproduct;
-         $subproduct_wishlist->wishlist_id=$wishlist->id;
+         $subproduct_cart->subproduct_id=$request->subproduct_id;
+         $subproduct_cart->cart_id=$cart->id;
 
-         $subproduct_wishlist->save();
+         $subproduct_cart->save();
 
          
+         $subproducts=subproduct_cart::select('subproduct_id')->distinct()->get()->count();
 
 
-
+            session(['cart_count' => $subproducts]);
 
          // else{
 
@@ -97,14 +82,10 @@ class WishlistController extends Controller
          // }
 
 
-        Session::flash('success','Your Wish List is Updated!!');
+        Session::flash('success','Product Added To Cart!!');
 
-         return redirect()->route('product.show',$request->subproduct);
+         return redirect()->route('product.show',$request->subproduct_id);
 
-
-        // else{
-        //     $
-        // }
     }
 
     /**
@@ -149,22 +130,6 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
-        
-        $wishlist_id=session('wishlist_id');
-        
-        $pro=subproduct_wishlist::where([
-    ['subproduct_id', '=', $id],
-    ['wishlist_id', '=', $wishlist_id],
-    ])->first();
-
-        $pro->delete();
-
-        Session::flash('Success','The Product is Removed from Wishlist!');
-
-
-        return redirect()->route('wishlist.index');
-   
-
-
+        //
     }
 }

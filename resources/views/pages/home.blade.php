@@ -127,6 +127,9 @@
   <!--image slider ends-->
 <div class="container">
 
+
+  <h1 class="staticheading" style="text-align:center;">Our Products</h1>
+
 <div class="row">
 
 @foreach($subproduct as $sproduct)
@@ -143,11 +146,29 @@
 <table width="100%">
 <tr>
     <td>
-    <p>{{$sproduct->product->name}}</p>
+    <p><b>{{$sproduct->product->name}}</b></p>
     </td>
     <td>
-    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-    </td>
+          
+@if (Auth::guest())
+  
+     <a data-toggle="modal" data-target="#myModal">
+                                        <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button> </a>  
+
+@else
+    {!!Form::open(array('route'=>'wishlist.store'))!!}
+
+  <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct">
+
+  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
+  
+  
+              <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button>
+
+  {!!Form::close()!!}
+
+@endif
+</td>
 </tr>
 <tr>
 <td>
