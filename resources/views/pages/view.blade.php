@@ -160,7 +160,7 @@
 							<span class="size" data-toggle="tooltip" title="large">l</span>
 							<span class="size" data-toggle="tooltip" title="xtra large">xl</span> -->
 						</h5>
-						<h5 class="colors">colors: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};">
+						<h5 class="colors">color: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};">
 						</div>
 							<!-- <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
 							<span class="color green"></span>

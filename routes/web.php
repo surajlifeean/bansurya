@@ -66,8 +66,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/aboutus', 'StaticpagesController@aboutus')->name('aboutus');
 
+Route::any('/contactus', 'ContactusController@store')->name('contactus');
+
 
 Route::get('/policy', 'StaticpagesController@policy')->name('policy');
 
+Route::resource('ajaxreq', 'AjaxController');
 
 ?>

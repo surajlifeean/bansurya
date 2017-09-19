@@ -1,22 +1,40 @@
 
     <footer class="footer-distributed" >
 
-      <div class="footer-left">
+<!-- @if(Session::has('sent'))
+  
+  <div class="alert alert-success" role="alert" style="width:400px; margin-left:10%">
+
+    <strong>Done:</strong>{{Session::get('sent')}}
+  </div>
+  
+@endif
+ -->
+
+ <div id="forfocus"></div>
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+
+       <div class="footer-left">
 
         <h3>Ban<span>suriyaa</span></h3>
 
         <p class="footer-links">
-          <a href="#">Home</a>
+          <a href="{{route('home')}}">Home</a>
           ·
           <a href="{{route('policy')}}">Privacy Policy</a>
           ·
-          <a href="#">Pricing</a>
-          ·
+          <!-- <a href="#">Pricing</a>
+           -->
           <a href="{{route('aboutus')}}">About Us</a>
           ·
-          <a href="#">Faq</a>
+          <!-- <a href="#">Faq</a>
           ·
-          <a href="#">Contact</a>
+          <a href="#">Contact</a> -->
         </p>
 
         <p class="footer-company-name">Bansuriya &copy; 2015</p>
@@ -34,15 +52,24 @@
       <div class="footer-right">
 
         <p>Contact Us</p>
+    {!!Form::open(array('route'=>'contactus'))!!}
 
-        <form action="#" method="post">
+          <input type="text" name="email" placeholder="Email" id="email" />
 
-          <input type="text" name="email" placeholder="Email" />
-          <textarea name="message" placeholder="Message"></textarea>
-          <button>Send</button>
+          <textarea name="message" placeholder="Message" id="message"></textarea>
+          <button class="submit">Send</button>
+    {!!Form::close()!!}
 
-        </form>
 
       </div>
 
     </footer>
+<script type="text/javascript">
+
+// function getfocus(){
+//       document.getElementById('forfocus').focus();
+
+//   }
+
+
+</script>

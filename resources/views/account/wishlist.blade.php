@@ -193,8 +193,20 @@ loop to display the wishlist products will be displayed here -->
     @endif
 
             </p>
-            <p class="card-text"><small class="text-muted">Add to Bag</small> <small class="text-muted" style="margin-left: 10px;"><a href="">
-                   
+            <!-- <p class="card-text"><small class="text-muted">Add to Bag</small> <small class="text-muted" style="margin-left: 10px;"><a href="">
+             -->
+
+             {!!Form::open(array('route'=>'cart.store'))!!}
+
+  <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
+
+  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+  
+  
+              <button class="add-to-cart btn btn-primary" type="submit">add to cart</button>
+
+   {!!Form::close()!!}
+       
                     {!! Form::open(['route'=>['wishlist.destroy',$sproduct->id],'method'=>'DELETE'])!!}
 
 

@@ -79,6 +79,10 @@ class ProfileimageController extends Controller
         }
 
 
+        return redirect()->back()->with('success', 'Your Profile Pic Is Changed!');
+
+
+
     }
 
     /**

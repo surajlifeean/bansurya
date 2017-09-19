@@ -175,19 +175,18 @@ span.personalInfoValue {
                   <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        NAME</label>
-                        <span class="personalInfoValue">
-                        {{Auth::user()->name}}
-                        </span>
+                        Old Password</label>
+                       <input id="oldpwd" name="region" type="text" placeholder="Old Password"
+                        class="input-xlarge form-control">
+                       
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label>
                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                        EMAIL ID</label>
-                        <span class="personalInfoValue">
-                          {{Auth::user()->email}}
-                        </span>
-                   
+                        New Password</label>
+                       <input id="newpwd" name="region" type="text" placeholder="New Password"
+                        class="input-xlarge form-control">
+                       
 
                     </div>
 
@@ -197,13 +196,12 @@ span.personalInfoValue {
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                         <label>
                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                        NEWSLETTER SUBSCRIPTION</label>
-                        <span class="personalInfoValue">
-                        Email:Yes
-                        </span>
-                   
+                        Confirm New Password</label>
+                        <input id="cnewpwd" name="region" type="text" placeholder="Confirm Password"
+                        class="input-xlarge form-control">
+                       
                        </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label>
                       <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
                         MOBILE NUMBER</label>
@@ -212,7 +210,7 @@ span.personalInfoValue {
                         </span>
 
                     </div>
-
+ -->
                   </div>
                   <!-- <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">

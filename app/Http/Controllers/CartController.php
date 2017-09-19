@@ -14,6 +14,7 @@ use App\Category;
 
 use App\Subcategory;
 
+use Auth;
 class CartController extends Controller
 {
     /**
@@ -24,9 +25,18 @@ class CartController extends Controller
     public function index()
     {
 
+    
+
     $category=Category::all();
     $Subcategory=Subcategory::all();
-        return view('account.cart')->withCategory($category)->withSubcategory($Subcategory);
+
+      $id=Auth::user()->id;
+
+    $cart=cart::select('id')->where('user_id','=',$id)->first();
+
+    $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
+
+        return view('account.mycart')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts);
     }
 
     /**
@@ -70,7 +80,7 @@ class CartController extends Controller
          $subproduct_cart->save();
 
          
-         $subproducts=subproduct_cart::select('subproduct_id')->distinct()->get()->count();
+         $subproducts=subproduct_cart::select('subproduct_id')->distinct()->where('cart_id','=',$cart->id)->get()->count();
 
 
             session(['cart_count' => $subproducts]);

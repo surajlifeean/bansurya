@@ -81,11 +81,9 @@
           <li>
               <a href="{{route('cart.index')}}"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="badge" style="margin-top:-25px; margin-left:-10px; font-family: auto;">
 
-            @if(Auth::guest())
-            0
-            @else
+
               {{Session::get('cart_count')}}
-            @endif
+            
           </span></a>
         </li>
         </ul>

@@ -169,7 +169,7 @@ span.personalInfoValue {
               <div class="tab-content">
               <label>
                       <U>ADDRESS</U></label>
-                      
+        {!!Form::open(array('route'=>'address.store'))!!}                   
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
                   <div class="row vspace5">
@@ -177,7 +177,7 @@ span.personalInfoValue {
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         NAME</label>
                     
-                        <input id="full-name" name="full-name" type="text" placeholder="full name"
+                        <input id="full-name" name="name" type="text" placeholder="full name"
                         class="input-xlarge form-control">
                         <p class="help-block"></p>
                     
@@ -187,7 +187,7 @@ span.personalInfoValue {
                       <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                         ADDRESS 1</label>
                        
-                        <input id="address-line1" name="address-line1" type="text" placeholder="address line 1"
+                        <input id="address1" name="address1" type="text" placeholder="address line 1"
                         class="input-xlarge form-control">
                         <p class="help-block">Street address, P.O. box, company name, c/o</p>
                    
@@ -202,7 +202,7 @@ span.personalInfoValue {
                       <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                         ADDRESS 2</label>
                        
-                       <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
+                       <input id="address2" name="address2" type="text" placeholder="address line 2"
                         class="input-xlarge form-control">
                         <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
                    
@@ -211,8 +211,41 @@ span.personalInfoValue {
                       <label>
                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         CITY/TOWN</label>
-                        <input id="city" name="city" type="text" placeholder="city" class="input-xlarge form-control">
-                        <p class="help-block"></p>
+                        <select id="city" name="city" type="text" placeholder="city" class="input-xlarge form-control">
+                          <option value="Kolkata">Kolkata</option>  
+       <option value="Kolkata">Howrah  </option>
+       <option value="Darjeeling">Darjeeling  </option>
+       <option value="Kalimpong">Kalimpong </option>
+       <option value="Sainthia">Sainthia  </option>
+       <option value="Kharagpur">Kharagpur</option>
+       <option value="Bardhaman">Bardhaman </option>
+       <option value="Asansol">Asansol </option>
+       <option value="Durgapur">Durgapur  </option>
+       <option value="Murshidabad">Murshidabad</option>
+       <option value="Siliguri">Siliguri  </option>
+       <option value="Jalpaiguri">Jalpaiguri</option>
+       <option value="Raiganj">Raiganj </option>
+       <option value="Balurghat">Balurghat </option>
+       <option value="Purulia">Purulia </option>
+       <option value="Baharampur">Baharampur</option>
+       <option value="Krishnanagar">Krishnanagar</option>
+       <option value="Barasat">Barasat </option>
+       <option value="Barrackpore">Barrackpore</option>
+       <option value="Ranaghat">Ranaghat  </option>
+       <option value="Serampore">Serampore </option>
+       <option value="Chandannagar">Chandannagar  </option>
+       <option value="Chinsura">Chinsura  </option>
+       <option value="Kalyani">Kalyani </option>
+       <option value="Tamluk">Tamluk  </option>
+       <option value="Medinipur">Medinipur </option>
+       <option value="Nabadwip">Nabadwip  </option>
+       <option value="Contai">Contai  </option>
+       <option value="Cooch Behar">Cooch Behar</option>
+       <option value="Bankura">Bankura</option>
+       <option value="Bishnupur">Bishnupur </option>
+       <option value="Haldia">Haldia</option>
+
+                        </select>
                     </div>
 
                   </div>
@@ -226,7 +259,7 @@ span.personalInfoValue {
                        
                        
                        <input id="region" name="region" type="text" placeholder="state / province / region"
-                        class="input-xlarge form-control">
+                        class="input-xlarge form-control" value="West Bengal" readonly>
                         <p class="help-block"></p>
 
                    </div>
@@ -234,13 +267,16 @@ span.personalInfoValue {
                       <label>
                       <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
                         POSTAL CODE</label>
-                        <input id="region" name="region" type="text" placeholder="Postal Code"
+                        <input id="pcode" name="pcode" type="text" placeholder="Postal Code"
                         class="input-xlarge form-control">
                         <p class="help-block"></p>
 
                     </div>
 
                   </div>
+                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
+
+                 {!!Form::close()!!}
                   <!-- <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                        </div>
