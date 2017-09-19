@@ -52,6 +52,13 @@ class ProfileimageController extends Controller
         }
 
 
+
+if($_FILES['pp']['name']==""){
+
+    return redirect()->back()->with('success', 'Please Select a New Image!');
+
+}
+
         if($request->hasFile('pp')){
 
 

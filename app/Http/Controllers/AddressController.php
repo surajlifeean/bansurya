@@ -28,13 +28,28 @@ class AddressController extends Controller
     public function index()
     {
         //
+
+
+
+
             $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
 
         $category=Category::all();
     $Subcategory=Subcategory::all();
 
-        return view('account.address')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
+$address=Address::where('user_id','=',Auth::user()->id)->first();
+
+        if(count($address)==0){
+        return view('account.address')->withCategory($category)->withEdit('0')->withSubcategory($Subcategory)->withImagedet($image);
     
+   }
+
+        else{
+
+            return redirect()->route('address.edit',$address->id);
+        } 
+
+
     }
 
     /**
@@ -82,7 +97,7 @@ class AddressController extends Controller
         $address->save();
 
 
-           Session::flash('success','Your Address is updated!');
+           Session::flash('success','Your Address is Added!');
 
         return redirect()->route('address.index');
 
@@ -107,7 +122,24 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $address=Address::find($id);
+
+        // dd($address);
+        // print_r($address);
+        
+            $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+
+        $category=Category::all();
+    $Subcategory=Subcategory::all();
+
+
+            return view('account.address')->
+            withAddress($address)->withEdit('1')
+                ->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
+
+
+
     }
 
     /**
@@ -119,7 +151,37 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        $this->validate($request,array(
+
+        
+            'name'=>'required',
+            'address1'=>'required',
+            'address2'=>'required',
+            'city'=>'required',
+            'region'=>'required',
+            'pcode'=>'required',
+            
+            ));
+
+        $address=Address::find($id);
+
+        $address->name=$request->name;
+        $address->address1=$request->address1;
+        $address->address2=$request->address2;
+        $address->city=$request->city;
+        $address->region=$request->region;
+        $address->pcode=$request->pcode;
+        $address->user_id=Auth::user()->id;
+
+        $address->save();
+
+
+           Session::flash('success','Your Address is updated!');
+
+        return redirect()->route('address.index');
+
     }
 
     /**

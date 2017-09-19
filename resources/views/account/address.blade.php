@@ -1,3 +1,4 @@
+
 @extends('main')
 
 
@@ -169,6 +170,8 @@ span.personalInfoValue {
               <div class="tab-content">
               <label>
                       <U>ADDRESS</U></label>
+
+  @if($edit=='0')
         {!!Form::open(array('route'=>'address.store'))!!}                   
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
@@ -277,16 +280,141 @@ span.personalInfoValue {
                   <button type="submit" class="btn btn-block btn-primary">Submit</button>
 
                  {!!Form::close()!!}
+
+@else
+
+                     {!!Form::model($address,['route'=>['address.update',$address->id],'method'=>'PUT'])!!}
+
+                       <div class="tab-pane personalInfoWrapper active">
+                  <div class="personalInfoView">
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        NAME</label>
+                    
+                        <input id="full-name" name="name" type="text" placeholder="full name"
+                        class="input-xlarge form-control" value="{{$address->name}}">
+                        <p class="help-block"></p>
+                    
+                  </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        ADDRESS 1</label>
+                       
+                        <input id="address1" name="address1" type="text" placeholder="address line 1"
+                        class="input-xlarge form-control" value="{{$address->address1}}">
+                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                   
+
+                    </div>
+
+                  </div>
+
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                        <label>
+                      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        ADDRESS 2</label>
+                       
+                       <input id="address2" name="address2" type="text" placeholder="address line 2"
+                        class="input-xlarge form-control" value="{{$address->address2}}">
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                   
+                       </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                        CITY/TOWN</label>
+                        <select id="city" name="city" type="text" placeholder="city" class="input-xlarge form-control" >
+                          <option value="{{$address->city}}">{{$address->city}}</option>  
+
+                          <option value="Kolkata">Kolkata</option>  
+       <option value="Kolkata">Howrah  </option>
+       <option value="Darjeeling">Darjeeling  </option>
+       <option value="Kalimpong">Kalimpong </option>
+       <option value="Sainthia">Sainthia  </option>
+       <option value="Kharagpur">Kharagpur</option>
+       <option value="Bardhaman">Bardhaman </option>
+       <option value="Asansol">Asansol </option>
+       <option value="Durgapur">Durgapur  </option>
+       <option value="Murshidabad">Murshidabad</option>
+       <option value="Siliguri">Siliguri  </option>
+       <option value="Jalpaiguri">Jalpaiguri</option>
+       <option value="Raiganj">Raiganj </option>
+       <option value="Balurghat">Balurghat </option>
+       <option value="Purulia">Purulia </option>
+       <option value="Baharampur">Baharampur</option>
+       <option value="Krishnanagar">Krishnanagar</option>
+       <option value="Barasat">Barasat </option>
+       <option value="Barrackpore">Barrackpore</option>
+       <option value="Ranaghat">Ranaghat  </option>
+       <option value="Serampore">Serampore </option>
+       <option value="Chandannagar">Chandannagar  </option>
+       <option value="Chinsura">Chinsura  </option>
+       <option value="Kalyani">Kalyani </option>
+       <option value="Tamluk">Tamluk  </option>
+       <option value="Medinipur">Medinipur </option>
+       <option value="Nabadwip">Nabadwip  </option>
+       <option value="Contai">Contai  </option>
+       <option value="Cooch Behar">Cooch Behar</option>
+       <option value="Bankura">Bankura</option>
+       <option value="Bishnupur">Bishnupur </option>
+       <option value="Haldia">Haldia</option>
+
+                        </select>
+                    </div>
+
+                  </div>
+
+
+                  <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                        <label>
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        STATE</label>
+                       
+                       
+                       <input id="region" name="region" type="text" placeholder="state / province / region"
+                        class="input-xlarge form-control" value="West Bengal" readonly>
+                        <p class="help-block"></p>
+
+                   </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label>
+                      <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                        POSTAL CODE</label>
+                        <input id="pcode" name="pcode" type="text" placeholder="Postal Code"
+                        class="input-xlarge form-control" value="{{$address->pcode}}">
+                        <p class="help-block"></p>
+
+                    </div>
+
+                  </div>
+                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
+
+
+
+
+
+
+
+                      {!!Form::close()!!}
+
+
+
+
+@endif
                   <!-- <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                        </div>
                     
 
                   </div> -->
-                  <span class="editBtn" id="editPersonalInfo">
+                  <!-- <span class="editBtn" id="editPersonalInfo">
                   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                   Edit
-                  </span>
+                  </span> -->
              </div>
               
         </div>
@@ -303,6 +431,17 @@ span.personalInfoValue {
  @endsection
 
 
+<!--  @section('scripts')
+<script>
+
+  // var default=<?php $address->city; ?>
+        $('select[name="city"]').find('option:contains(default)')
+.attr("selected",true);
+
+</script>
+ @endsection
+
+ -->
 
 @section('scripts')
 
