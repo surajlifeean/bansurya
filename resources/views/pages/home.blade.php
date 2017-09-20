@@ -182,7 +182,27 @@
 
 </td>
 <td>
-  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+
+
+  @if (Auth::guest())
+  
+     <a data-toggle="modal" data-target="#myModal">
+              <button class="add-to-cart btn btn-default" type="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+
+@else
+    {!!Form::open(array('route'=>'cart.store'))!!}
+
+  <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
+
+  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+  
+  
+              <button class="add-to-cart btn btn-default" type="submit"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+
+  {!!Form::close()!!}
+
+@endif
+
 </td>
 
 </tr>

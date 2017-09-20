@@ -72,6 +72,21 @@ class CartController extends Controller
             $cart->save();
          }
 
+
+
+$checkforproductincart=subproduct_cart::where([
+    ['cart_id','=',$cart->id],
+    ['subproduct_id','=',$request->subproduct_id],
+    ])->first();
+
+    if(count($checkforproductincart)!=0){
+        Session::flash('success','You Aleardy Have This Product in Your Cart!!');
+
+         return redirect()->route('product.show',$request->subproduct_id);
+
+}
+
+
          $subproduct_cart=new subproduct_cart;
 
          $subproduct_cart->subproduct_id=$request->subproduct_id;
@@ -140,6 +155,21 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+                $cart_id=session('cart_id');
+        
+        $pro=subproduct_cart::where([
+    ['subproduct_id', '=', $id],
+    ['cart_id', '=', $cart_id],
+    ])->first();
+
+        $pro->delete();
+
+        $cc=session('cart_count');
+        session(['cart_count'=>$cc-1]);
+        Session::flash('Success','The Product is Removed from Wishlist!');
+
+
+        return redirect()->route('cart.index');
+
     }
 }

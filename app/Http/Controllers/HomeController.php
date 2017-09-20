@@ -29,6 +29,8 @@ class HomeController extends Controller
 
         if(Auth::user()){
         $cart=cart::where('user_id','=',Auth::user()->id)->first();
+
+        session(['cart_id' => $cart->id]);
         $subproducts=subproduct_cart::select('subproduct_id')->distinct()->where('cart_id','=',$cart->id)
         ->get()->count();
 

@@ -37,7 +37,7 @@
           <a href="#">Contact</a> -->
         </p>
 
-        <p class="footer-company-name">Bansuriya &copy; 2015</p>
+        <p class="footer-company-name">Bansuriya &copy; 2017. Powered By AIDA Labs</p>
 
         <div class="footer-icons">
 

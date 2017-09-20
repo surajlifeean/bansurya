@@ -214,11 +214,14 @@ span.glyphicon {
 
                                 </h5>
                             </div>
-                            <div class="col-md-4">
-                                <div class="stars">
-                                 <div id="stars" class="starrr"></div>
-                                </div>
-                            </div>
+   {!!Form::close()!!}
+       
+                    {!! Form::open(['route'=>['cart.destroy',$subproduct->id],'method'=>'DELETE'])!!}
+
+
+                           {!!Form::submit('Remove',array('class'=> 'btn-default btn pull-right'))!!}
+
+                    {!!Form::close()!!}
                         </div>
                     </div>
                 </div>

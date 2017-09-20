@@ -168,6 +168,8 @@
 						 --></h5>
 						<div class="action">
 
+<table>
+  <tr> <td>
 @if (Auth::guest())
   
      <a data-toggle="modal" data-target="#myModal">
@@ -186,7 +188,8 @@
    {!!Form::close()!!}
 
 @endif
-
+</td>
+<td>
 
 							
 
@@ -208,6 +211,9 @@
   {!!Form::close()!!}
 
 @endif
+</td>
+</tr>
+</table>
 
 						</div>
 					</div>

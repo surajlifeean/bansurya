@@ -80,6 +80,19 @@ class WishlistController extends Controller
             $wishlist->save();
          }
 
+
+$checkforproductinwishlist=subproduct_wishlist::where([
+    ['wishlist_id','=',$wishlist->id],
+    ['subproduct_id','=',$request->subproduct],
+    ])->first();
+
+    if(count($checkforproductinwishlist)!=0){
+        Session::flash('success','You Aleardy Have This Product in Your Wishlist!!');
+
+         return redirect()->route('product.show',$request->subproduct);
+
+}
+
          $subproduct_wishlist=new subproduct_wishlist;
 
          $subproduct_wishlist->subproduct_id=$request->subproduct;
