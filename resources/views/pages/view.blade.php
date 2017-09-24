@@ -107,8 +107,8 @@
         <ul id="bzoom">
         	@foreach($images as $image)
             <li>
-                <img class="bzoom_thumb_image" src="{{asset('http://127.0.0.1:8080/images/'.$image->name)}}"   />
-                <img class="bzoom_big_image" src="{{asset('http://127.0.0.1:8080/images/'.$image->name)}}"/>
+                <img class="bzoom_thumb_image" src="{{asset('http://127.0.0.1:8080/images/'.$image->name)}}"  alt="" />
+                <img class="bzoom_big_image" src="{{asset('http://127.0.0.1:8080/images/'.$image->name)}}" alt=""/>
 
             </li>
             @endforeach
@@ -155,18 +155,32 @@
 
 						%</strong> of buyers enjoyed this product! <strong><!-- (87 votes) --></strong></p>
 						<h5 class="sizes">sizes:{{$subproduct->getsize->name}}
-						<!-- 	<span class="size" data-toggle="tooltip" title="small">s</span>
-							<span class="size" data-toggle="tooltip" title="medium">m</span>
-							<span class="size" data-toggle="tooltip" title="large">l</span>
-							<span class="size" data-toggle="tooltip" title="xtra large">xl</span> -->
 						</h5>
-						<h5 class="colors">color: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};">
-						</div>
-							<!-- <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-							<span class="color green"></span>
-							<span class="color blue"></span>
-						 --></h5>
-						<div class="action">
+            <div class="row">
+                            <div class="col-md-3 col-sm-5 col-xs-3">
+                                <h5 class="colors">Quantity:</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-5 col-xs-6">
+                                <div class="input-group">
+                                 
+                                    
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-left-minus btn btn-default btn-number"  data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+
+            <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10" min="1" max="100">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                              </div>
+                </div>
+                        
+						<div class="action" style="margin-top: 20px;">
 
 <table>
   <tr> <td>
@@ -214,6 +228,7 @@
 </td>
 </tr>
 </table>
+
 
 						</div>
 					</div>
@@ -303,9 +318,59 @@ $(document).ready(function(){
 		$(".details").css('margin-top','500px');
 	}
 
+
+var $img = $a.getElementsByTagName("img")[0];
+
+console.log($img.alt);
+
 });
+
+var $img = $a.getElementsByTagName("img")[0];
+
+//sxript for quantity
+
+
 </script>
 
+<script type="text/javascript">
+  
+
+
+$(document).ready(function(){
+
+var quantitiy=0;
+   $('.quantity-right-plus').click(function(e){
+        
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+            
+            $('#quantity').val(quantity + 1);
+
+          
+            // Increment
+        
+    });
+
+     $('.quantity-left-minus').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+      
+            // Increment
+            if(quantity>0){
+            $('#quantity').val(quantity - 1);
+            }
+    });
+    
+});
+</script>
 
 
 @endsection

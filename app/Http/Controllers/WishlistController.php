@@ -34,7 +34,7 @@ class WishlistController extends Controller
     public function index()
     {
 
-        $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
 
     $category=Category::all();
     $Subcategory=Subcategory::all();
