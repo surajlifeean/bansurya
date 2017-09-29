@@ -144,68 +144,71 @@ span.personalInfoValue {
 
 @include('partials._imagespace')
 
-    <div class="container" >
-    <div class="row">
+<div class="container" >
+  <div class="row">
 
-<div class="col-sm-3 col-md-3">
-            
-            @include('partials._dashnav')
+      <div class="col-sm-3 col-md-3">
+                        
+          @include('partials._dashnav')
 
-        </div>
+      </div>
 
 
 
-        <div class="col-sm-9 col-md-9">
+        <div class="col-sm-9 col-md-9"> <!-- col-md-9 -->
 
-    <div class="well">
-      <div class="tab-content">
-        	<div class="row">
+            <div class="well">
+                  
+                <div class="tab-content">
+        	            
+                     <div class="row">
 
 
 
 <!-- 
 loop to display the wishlist products will be displayed here -->
- <label style="margin-bottom: 10px;">
-                      <U>WISHLIST</U></label>
+                     <label style="margin-bottom: 10px;">
+                                          <U>WISHLIST</U></label>
 
 
-              <div class="tab-pane personalInfoWrapper active">
-                  <div class="personalInfoView">
-@foreach($subproduct as $sproduct)
-      	<div class="card col-sm-12 col-md-4">
-            @php
-      $img=$sproduct->images[0]->name
-    @endphp
-        
-                
-  <!--     <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya">
-   -->
-         <img class="card-img-top" src="{{asset('http://127.0.0.1:8080/images/'.$img)}}" alt="Card image cap" width="60%" height="30%">
-          <div class="card-block">
-            <h4 class="card-title">{{$sproduct->product->name}}</h4>
-            <p class="card-text">
-            	<strike> Rs{{$sproduct->price}}</strike>
-    @if($sproduct->discount_type=="Percentage")
-        Rs{{$sproduct->price-($sproduct->price*$sproduct->discount)/100}}
-        ({{$sproduct->discount}}% OFF)
-    @else
-         Rs{{$sproduct->price-$sproduct->discount}}({{floor($sproduct->discount*100/$sproduct->price)}}% OFF) 
-    @endif
+                              <div class="tab-pane personalInfoWrapper active">
+                                  <div class="personalInfoView">
 
-            </p>
-            <!-- <p class="card-text"><small class="text-muted">Add to Bag</small> <small class="text-muted" style="margin-left: 10px;"><a href="">
-             -->
 
-             {!!Form::open(array('route'=>'cart.store'))!!}
 
-  <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
 
-  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
-  
-  
-              <button class="add-to-cart btn btn-primary" type="submit">add to cart</button>
+                                        @if(count($subproduct))
+                                        @foreach($subproduct as $sproduct)
+                                              	<div class="card col-sm-12 col-md-4">
+                                                    @php
+                                              $img=$sproduct->images[0]->name
+                                            @endphp
+                                                                  
+                                  
+                    <!--     <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya">
+                     -->
+                           <img class="card-img-top" src="{{asset('http://127.0.0.1:8080/images/'.$img)}}" alt="Card image cap" width="60%" height="30%">
+                            <div class="card-block">
+                              <h4 class="card-title">{{$sproduct->product->name}}</h4>
+                              <p class="card-text">
+                              	<strike> Rs{{$sproduct->price}}</strike>
+                      @if($sproduct->discount_type=="Percentage")
+                          Rs{{$sproduct->price-($sproduct->price*$sproduct->discount)/100}}
+                          ({{$sproduct->discount}}% OFF)
+                      @else
+                           Rs{{$sproduct->price-$sproduct->discount}}({{floor($sproduct->discount*100/$sproduct->price)}}% OFF) 
+                      @endif  </p>
 
-   {!!Form::close()!!}
+                        {!!Form::open(array('route'=>'cart.store'))!!}
+
+                        <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
+
+                        <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+            
+            
+                        <button class="add-to-cart btn btn-primary" type="submit">add to cart</button>
+
+                              {!!Form::close()!!}
        
                     {!! Form::open(['route'=>['wishlist.destroy',$sproduct->id],'method'=>'DELETE'])!!}
 
@@ -213,28 +216,36 @@ loop to display the wishlist products will be displayed here -->
                            {!!Form::submit('Remove',array('class'=> 'btn-default btn'))!!}
 
                     {!!Form::close()!!}
-</a></small></p>
-          </div>
+             </div>
         </div>
 @endforeach
-			</div>
-		</div>
+
+@else 
+
+No Products in Wishlist
+
+@endif
 
 
-      </div>
+
+			                                   </div>
+	                             	</div>
 
 
+                         </div>
+
+
+                </div>
+
+
+
+
+        </div>
     </div>
 
 
+</div>  <!-- row ends -->
 
-
-</div>
-</div>
-
-
-</div>
-
-</div>
+</div> <!-- container ends -->
 
 @endsection

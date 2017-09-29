@@ -1,4 +1,4 @@
-{{dump($subproducts)}}
+<!-- {{dump($subproducts)}} -->
 
 @extends('main')
 
@@ -22,7 +22,7 @@
     border: 1px solid #dcdcdc;
     padding: 15px;
 }
-
+/*
 body {
     font-family: 'montserratLight';
     font-size: 12px;
@@ -30,7 +30,7 @@ body {
     line-height: normal;
     background-color: #fff;
 }
-
+*/
 /*----------------------
 Product Card Styles 
 ----------------------*/
@@ -116,10 +116,7 @@ span.glyphicon {
   width: 2em;
   border-radius: 2px; }
   .color:first-of-type {
-    margin-left: 20px; }
-
-
-
+    margin-left: 20px; }                                                                                
 </style>
 
 @endsection
@@ -138,8 +135,11 @@ span.glyphicon {
         
                                 @endphp
 
+                    @if($subproducts!=null)
+
                     @foreach($subproducts as $subproduct)
-        <div class="row">
+
+                    <div class="row">
             
 
                         <div class="col-md-8">             
@@ -167,9 +167,7 @@ span.glyphicon {
                             </h5>
 
 
-                        <h5 class="colors">Size: <div class="color" style="
-    margin-top: 10px;
-">{{$subproduct->getsize->name}}
+                        <h5 class="colors">Size: <div class="color" style="margin-top: 10px;">{{$subproduct->getsize->name}}
                         </div>
                             </h5>
 
@@ -195,26 +193,26 @@ span.glyphicon {
                                              $totalprice=$subproduct->price+$totalprice;
                                          @endphp
 
-    @if($subproduct->discount_type=="Percentage")
-        Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}
-        ({{$subproduct->discount}}% OFF)
-        
-        @php 
-        $totaldiscount=$totaldiscount+($subproduct->price*$subproduct->discount)/100;
-        @endphp
-    @else
-         Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}% OFF) 
+        @if($subproduct->discount_type=="Percentage")
+            Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}
+            ({{$subproduct->discount}}% OFF)
+            
+            @php 
+            $totaldiscount=$totaldiscount+($subproduct->price*$subproduct->discount)/100;
+            @endphp
+        @else
+             Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}% OFF) 
 
 
-        @php 
-        $totaldiscount=$totaldiscount+$subproduct->discount;
-        @endphp
-    @endif
+            @php 
+            $totaldiscount=$totaldiscount+$subproduct->discount;
+            @endphp
+        @endif
 
 
                                 </h5>
                             </div>
-   {!!Form::close()!!}
+                        {!!Form::close()!!}
        
                     {!! Form::open(['route'=>['cart.destroy',$subproduct->id],'method'=>'DELETE'])!!}
 
@@ -229,6 +227,15 @@ span.glyphicon {
         </div>
 
         @endforeach
+
+        @else
+            <div>
+            No Products in your cart
+            </div>
+
+        @endif
+
+
     </div>
             </div>
             <div class="col-md-3">

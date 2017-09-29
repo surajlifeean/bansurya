@@ -123,9 +123,9 @@
 					smurl = $li.eq(i).find('.bzoom_thumb_image').attr("src");
 
 					if(i==0){
-						html += '<li class="bzoom_smallthumb_active"><img src="'+smurl+'" alt="small" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
+						html += '<li class="bzoom_smallthumb_active"><img src="'+smurl+'" alt="" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
 					}else{
-						html += '<li style="opacity:0.4;"><img src="'+smurl+'" alt="small" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
+						html += '<li style="opacity:0.4;"><img src="'+smurl+'" alt="" style="width:'+smwidth+'px; height:'+smheight+'px;" /></li>';
 					}
 				}
 

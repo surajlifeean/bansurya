@@ -5,16 +5,18 @@
           <span class="glyphicon glyphicon-menu-hamburger"></span>
           
         </button>
-        <a href="{{route('home')}}"><img src="http://127.0.0.1:8000/images/logo2.jpg" height="70px" weight="90px" alt="Bansurya">
+        <a href="{{route('home')}}"><img src="/images/logo2.jpg" height="70px" weight="90px" alt="Bansurya">
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
+        
+
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 25px;">
           
      
       @foreach($category as $cat)
 
-            <li class="dropdown" style="margin-top: 10px; margin-right: 10px;">
+            <li class="dropdown" style="margin-top: 12px; margin-right: 10px;">
 
             <a href="{{route('category.show',$cat->id)}}" style="display: inline">{{$cat->title }} 
             </a><span class="caret dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></span>

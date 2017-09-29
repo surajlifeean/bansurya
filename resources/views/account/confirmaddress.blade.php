@@ -1,178 +1,142 @@
-
 @extends('main')
 
 
 @section('stylesheets')
 
-<style type="text/css">
-.wrapper {
-   position: relative;
-}
-
-.wrapper .glyphicon {
-   position: absolute;
-   top: 20px;
-   left: 100px;
-}
-
-
-/*
-  .navbar-default {
-    background-color:  #d8fefa;
-    border-color: #030033;
-}
-*/
-.img-circle {
-
-    border-radius: 360px;
-    max-width: 80%;      
-    
-}
-
-.cardheader{
-  background-color: #FFB400;
-  background-size: cover;
-  height:90px;
-}
-.avatar{
-  position: relative;
-  top:-50px;
-  margin-bottom: -50px;
-}
-
-.avatar img{
-  vertical-align:center;
-  border-radius: 50%;
-  border:9px solid #fff;
-}
-
-.info{
-  padding: 4px 8px 10px;
-}
-
-.title{
-  margin-bottom: 4px;
-  font-size: 20px;
-  color: #262626;
- 
-  vertical-align: middle;
-}
-
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
-
-.tab-pane{
-  position: relative;
-}
-
-.tab-content>.active{
-  display: block;
-}
-
-span.personalInfoValue {
-    color: #292929;
-    font-size: 18px;
-    font-family: 'montserratRegular';
-    width: 100%;
-    display: block;
-    padding: 2px 0;
-    }
-
-    .personalInfoWrapper label {
-    font-weight: 400;
-    font-family: 'montserratRegular';
-    font-size: 15px;
-    text-transform: uppercase;
-    color: #9a9a9a;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-
-
-.personalInfoWrapper .personalInfoIcon:before {
-    display: inline-block;
-    font: normal normal normal 22px/1 FontAwesome;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 42px;
-    height: 42px;
-    background: #f2f2f2;
-    border-radius: 100%;
+	
+<style>
+.staticcontent{
+    font-size: 16px;
+    line-height: 28px;
     text-align: center;
-    line-height: 42px;
-    color: #292929;
+    color: #818181;
+    width: 800px;
+    max-width: 94%;
+    margin: 0 auto;
+
 }
 
-.editBtn{
-      position: absolute;
-    top: -80px;
-    right: -16px;
-    background: #f2f2f2;
-    width: 75px;
-    height: 30px;
-    color: #292929;
-    font-size: 12px;
-    text-transform: uppercase;
-    line-height: 30px;
-    padding: 0 0 0 10px;
-    cursor: pointer;
-    font-family: 'montserratRegular';
+.rightPanelCartWrapper {
+    border: 1px solid #dcdcdc;
+    padding: 15px;
 }
+
+/*----------------------
+Product Card Styles 
+----------------------*/
+.panel.panel--styled {
+    background: #F4F2F3;
 }
-.glyphicon { margin-right:10px; }
-.panel-body { padding:0px; }
-.panel-body table tr td { padding-left: 15px }
-.panel-body .table {margin-bottom: 0px; }
+.panelTop {
+    padding: 30px;
+}
+
+.panelBottom {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+}
+.btn-add-to-cart {
+    background: #337ab7;
+    color: #fff;
+}
+.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+    color: #fff;   
+    background: #FD7172;
+    outline: none;
+}
+.btn-add-to-cart:active {
+    background: #F9494B;
+    outline: none;
+}
 
 
-  </style>
+span.itemPrice {
+    font-size: 24px;
+    color: #FA5B58;
+}
+
+
+/*----------------------
+##star Rating Styles 
+----------------------*/
+.stars {
+    padding-top: 10px;
+    width: 100%;
+    display: inline-block;
+}
+span.glyphicon {
+    padding: 5px;
+}
+.glyphicon-star-empty {
+    color: #9d9d9d;
+}
+.glyphicon-star-empty, .glyphicon-star { 
+    font-size: 18px;
+}
+.glyphicon-star {
+    color: #FD4;
+    transition: all .25s;
+}   
+.glyphicon-star:hover { 
+    transform: rotate(-15deg) scale(1.3); 
+}
+
+
+
+
+/*color box
+*/
+
+
+.colors {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.product-title, .price, .sizes, .colors {
+  text-transform: SENTANCECASE;
+  font-weight: bold; }
+
+.color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+  width: 2em;
+  border-radius: 2px; }
+  .color:first-of-type {
+    margin-left: 20px; }
+
+
+
+</style>
+
 
 
 
 @endsection
 
-
-
 @section('content')
 
-@include('partials._imagespace')
+<div class="container">
 
-<!--side bar-->
-    <div class="container" >
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            
-            @include('partials._dashnav')
 
-        </div>
-        <div class="col-sm-9 col-md-9">
-            <div class="well">
+	<div class="row">
+
+
+		<div class="col-md-9">
+			<div class="well">
               <div class="tab-content">
-              <label>
-                      <U>ADDRESS</U></label>
 
-  @if(!$edit)
-        {!!Form::open(array('route'=>'address.store'))!!}                   
+					 <label style="text-align: center;">
+                      <U>DELIVERY ADDRESS</U></label>
+
+
+            @if(!count($address))
+			        {!!Form::open(array('route'=>'deliveryadd.store','class'=>'addressinput'))!!}             
+
+              <input type="hidden" name="cart_id" value="{{$cart->id}}">      
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
                   <div class="row vspace5">
@@ -277,15 +241,24 @@ span.personalInfoValue {
                     </div>
 
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
 
+
+                  <!-- <button type="submit">Submit</button>
+ -->
+				          </div>
+             </div>
                  {!!Form::close()!!}
 
-@else
 
-                     {!!Form::model($address,['route'=>['address.update',$address->id],'method'=>'PUT'])!!}
 
-                       <div class="tab-pane personalInfoWrapper active">
+            @else
+
+
+                     {!!Form::model($address,['route'=>['deliveryadd.update',$address->id],'method'=>'PUT','class'=>'addressinput'])!!}
+<!-- 
+                     ,'onsubmit' => 'return confirm()' -->
+
+                <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
                   <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
@@ -374,6 +347,12 @@ span.personalInfoValue {
                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         STATE</label>
                        
+
+
+
+
+
+
                        
                        <input id="region" name="region" type="text" placeholder="state / province / region"
                         class="input-xlarge form-control" value="West Bengal" readonly>
@@ -391,12 +370,10 @@ span.personalInfoValue {
                     </div>
 
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary">Submit</button>
 
 
-
-
-
+</div>
+</div>
 
 
                       {!!Form::close()!!}
@@ -404,16 +381,67 @@ span.personalInfoValue {
 
 
 
-@endif
-             </div>
-              
-        </div>
-    </div>
+            @endif
+
+
+
+
+             </div>  <!-- TAB CONTENT ENDS -->
+         </div> <!-- WELL ENDS -->
+		</div> <!-- COL-MD-9 ENDS HERE -->
+
+
+
+		<div class="col-md-3">
+			  					@php
+
+                                        $totalprice=0;
+                                        $totaldiscount=0;
+        
+                                @endphp
+                    @foreach($subproducts as $subproduct)
+
+                                        @php
+                                             $totalprice=$subproduct->price+$totalprice;
+                                         @endphp
+
+    @if($subproduct->discount_type=="Percentage")
+        
+        @php 
+        $totaldiscount=$totaldiscount+($subproduct->price*$subproduct->discount)/100;
+        @endphp
+    @else
+        @php 
+        $totaldiscount=$totaldiscount+$subproduct->discount;
+        @endphp
+    @endif
+
+
+@endforeach
+
+			@include('partials._billdetails');
+
+
+		</div>
+	</div>
 </div>
 
-</div>
-</div>
 
-</div>
+@endsection
 
- @endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+
+
+  $( ".checkout" ).click(function(event) {
+    event.preventDefault();
+  $( ".addressinput" ).submit();
+});
+	
+
+</script>
+
+
+@endsection

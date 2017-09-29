@@ -1,20 +1,8 @@
  <div class="rightPanelCart">
 					<div class="rightPanelCartWrapper">
-			<!-- <div class="couponDetails">
-			<h2 class="couponTitle">
-				Coupons <span class="pull-right">
-				<a href="#CouponModal" data-toggle="modal" class="btn">Apply Coupon</a></span>
-				<a href="#" class="btn">Edit</a></span>
-			</h2>
-			<p class="couponSavedAmount">You saved <span>Rs.400</span></p>
-																</div>-->
-
-	<!-- -------Promotion code discount amount--------------- -->
-		
-	<!-- -------Promotion code discount amount end--------------- -->
-		                      
+			                  
 	<div class="priceDetails">
-		<h3 class="couponTitle">Price Details</h3>
+		<h4 class="couponTitle">Price Details</h4>
 		<p class="title">Bag Total: 
 			<span class="pull-right">
 				Rs. 
@@ -44,34 +32,18 @@
 		<p class="title">Shipping Cost: <span class="pull-right">FREE</span></p>
 	</div>
 	<div class="orderDetails">
-		<h3 class="couponTitle">Order Total 
+		<h4 class="couponTitle">Order Total 
 			<span class="pull-right">
 				Rs. 
 				<span id="order_total_summery">{{$totalprice-$totaldiscount}}</span>
 				<input type="hidden" id="bag-total-balance" value="1949">
 			</span>
-		</h3> 
+		</h4> 
 		
-								<!-- <p class="title">Wallet Balance Used: 
-					<span class="pull-right">
-						Rs. 
-						<span id="is-wallet-used"> 
-							0 
-						</span>
-					</span>
-				</p>
-				<p class="title">From Your Account 
-			<span class="pull-right">
-				Rs. 
-				<span id="order_total_summery_to_pay_from_account"> 
-					1949  
-				</span>
-			</span>
-		</p> -->
-				
-						<form action="" method="post">
 
-						<button type="submit" class="btn btn-primary">Checkout</button> 
+		      {!! Form::open(['route'=>['cart.show',$cart->id],'method'=>'GET'])!!}
+				
+						<button type="submit" class="checkout btn btn-primary">Checkout</button> 
 
 				</form>	
 		       <h6 class="proceed-to-checkout-error-msg error"></h6> 

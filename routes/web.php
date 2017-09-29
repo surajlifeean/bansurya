@@ -58,6 +58,11 @@ Route::resource('profileimg','ProfileimageController');
 
 Route::resource('address','AddressController');
 
+Route::resource('deliveryadd','DeliveryaddController');
+
+
+Route::resource('order','OrdersController');
+
 // Route::post('auth/register','Auth\RegisterController@postRegister');
 
 

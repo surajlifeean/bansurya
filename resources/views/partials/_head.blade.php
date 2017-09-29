@@ -11,8 +11,8 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="http://127.0.0.1:8000/css/demo.css">
-  <link rel="stylesheet" href="http://127.0.0.1:8000/css/footer-distributed-with-contact-form.css">
+<link rel="stylesheet" href="/css/demo.css">
+  <link rel="stylesheet" href="/css/footer-distributed-with-contact-form.css">
 
 
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -23,6 +23,14 @@
 /*
 body { padding-top: 70px; }*/
  /* nav bar*/
+
+ body {
+    font-family: 'montserratLight';
+    font-size: 12px;
+    color: #5d5d5d;
+    line-height: normal;
+    background-color: #fff;
+}
 .example3 .navbar-brand {
   height: 70px;
 

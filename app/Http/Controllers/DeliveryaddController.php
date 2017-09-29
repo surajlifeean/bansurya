@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Category;
-
-
-use App\Subcategory;
-
-
-use App\Profileimage;
-
-use Auth;
-
 
 use App\Address;
 
+use Auth;
+
 use Session;
-class AddressController extends Controller
+
+use App\Category;
+
+use App\Subcategory;
+
+use App\cart;
+
+class DeliveryaddController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,29 +27,6 @@ class AddressController extends Controller
     public function index()
     {
         //
-
-
-
-
-        $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
-
-        $category=Category::all();
-        $Subcategory=Subcategory::all();
-
-        $address=Address::where('user_id','=',Auth::user()->id)->first();
-
-        if(!count($address)){
-            $edit=0;
-        return view('account.address')->withCategory($category)->withEdit($edit)->withSubcategory($Subcategory)->withImagedet($image)->withAddress($address);
-    
-   }
-
-        else{
-
-            return redirect()->route('address.edit',$address->id);
-        } 
-
-
     }
 
     /**
@@ -72,6 +48,10 @@ class AddressController extends Controller
     public function store(Request $request)
     {
 
+          $category=Category::all();
+          $Subcategory=Subcategory::all();
+  
+        
         $this->validate($request,array(
 
         
@@ -97,9 +77,19 @@ class AddressController extends Controller
         $address->save();
 
 
-           Session::flash('success','Your Address is Added!');
+           // Session::flash('success','Your Address is Added!');
 
-        return redirect()->route('address.index');
+    $id=Auth::user()->id;
+
+    $cart=cart::select('id')->where('user_id','=',$id)->first();
+
+
+    $subproducts=0;
+    if(count($cart))
+    $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
+
+        return view('account.paymentoption')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart);
+
 
     }
 
@@ -122,24 +112,7 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        
-        $address=Address::find($id);
-
-        // dd($address);
-        // print_r($address);
-        
-            $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
-
-        $category=Category::all();
-    $Subcategory=Subcategory::all();
-
-
-            return view('account.address')->
-            withAddress($address)->withEdit('1')
-                ->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
-
-
-
+        //
     }
 
     /**
@@ -151,7 +124,10 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+    
+          $category=Category::all();
+          $Subcategory=Subcategory::all();
+  
 
         $this->validate($request,array(
 
@@ -178,9 +154,18 @@ class AddressController extends Controller
         $address->save();
 
 
-           Session::flash('success','Your Address is updated!');
+           // Session::flash('success','Your Address is updated!');
+    $id=Auth::user()->id;
 
-        return redirect()->route('address.index');
+    $cart=cart::select('id')->where('user_id','=',$id)->first();
+
+
+    $subproducts=0;
+    if(count($cart))
+    $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
+
+
+        return view('account.paymentoption')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart);
 
     }
 

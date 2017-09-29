@@ -21,8 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('subproduct_id');
             $table->string('discount');
             $table->string('order_id');
-            
-            
+            $table->string('payment_mode');         
             $table->timestamps();
         });
     }

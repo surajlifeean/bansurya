@@ -10,6 +10,8 @@ use App\cart;
 
 use Session;
 
+use App\Address;
+
 use App\Category;
 
 use App\Subcategory;
@@ -30,13 +32,26 @@ class CartController extends Controller
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
-      $id=Auth::user()->id;
+    $id=Auth::user()->id;
 
     $cart=cart::select('id')->where('user_id','=',$id)->first();
 
+
+    if(count($cart))
     $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
 
-        return view('account.mycart')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts);
+    if(!count($cart))
+        {
+            $cart=new cart;
+            $cart->user_id=Auth::user()->id;
+            $cart->save();
+         }
+
+
+    session(['cart_id' => $cart->id]);
+        
+  //  dd($subproducts);
+        return view('account.mycart')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart);
     }
 
     /**
@@ -121,7 +136,27 @@ $checkforproductincart=subproduct_cart::where([
      */
     public function show($id)
     {
-        //
+
+
+    $category=Category::all();
+    $Subcategory=Subcategory::all();
+
+    $uid=Auth::user()->id;
+
+    $cart=cart::select('id')->where('user_id','=',$uid)->first();
+
+    $address=Address::where('user_id','=',$uid)->first();
+
+    // dd($address);
+    $subproducts=0;
+    if(count($cart))
+    $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
+
+
+
+        return view('account.confirmaddress')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart)->withAddress($address);
+
+
     }
 
     /**
@@ -155,7 +190,9 @@ $checkforproductincart=subproduct_cart::where([
      */
     public function destroy($id)
     {
-                $cart_id=session('cart_id');
+
+        // dd($id);
+        $cart_id=session('cart_id');
         
         $pro=subproduct_cart::where([
     ['subproduct_id', '=', $id],

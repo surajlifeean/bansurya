@@ -34,18 +34,22 @@ class WishlistController extends Controller
     public function index()
     {
 
-    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
-
+    
     $category=Category::all();
     $Subcategory=Subcategory::all();
     $subproduct=subproduct::all();
 
+
+    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+
+    
     $id=Auth::user()->id;
 
     $wishlist=Wishlist::select('id')->where('user_id','=',$id)->first();
-
+$subproducts=NULL;
+if(count($wishlist)){
     $subproducts=Wishlist::find($wishlist->id)->subproducts()->distinct('subproduct_id')->get();
-
+}
     // dd($products);
     
         return view('account.wishlist')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproducts)->withImagedet($image);        
