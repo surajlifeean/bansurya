@@ -31,6 +31,7 @@
 		</p> -->
 		<p class="title">Shipping Cost: <span class="pull-right">FREE</span></p>
 	</div>
+	
 	<div class="orderDetails">
 		<h4 class="couponTitle">Order Total 
 			<span class="pull-right">
@@ -40,17 +41,19 @@
 			</span>
 		</h4> 
 		
-
+	</div>  
 		      {!! Form::open(['route'=>['cart.show',$cart->id],'method'=>'GET'])!!}
 				
 						<button type="submit" class="checkout btn btn-primary">Checkout</button> 
 
 				</form>	
 		       <h6 class="proceed-to-checkout-error-msg error"></h6> 
-	</div>                        
-</div>
-<div class="rightPanelBottom">
-	<p>Need Help?<br>Call us on (022) 3077 0260</p>
-</div>
+	                      
+					</div>
 
+					<div class="rightPanelBottom">
+						<p>Need Help?<br>Call us on (022) 3077 0260</p>
+					</div>
+
+					
 </div>

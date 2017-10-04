@@ -17,6 +17,7 @@ class CreateSubproductCartsTable extends Migration
             $table->increments('id');
             $table->string('subproduct_id');
             $table->string('cart_id');
+            $table->string('quantity')->default("1");
             $table->timestamps();
         });
     }

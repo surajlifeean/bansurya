@@ -8,6 +8,6 @@ class cart extends Model
 {
       public function subproducts()
     {
-        return $this->belongsToMany('App\subproduct','subproduct_carts');
+        return $this->belongsToMany('App\subproduct','subproduct_carts')->withPivot('quantity');
     }
 }

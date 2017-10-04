@@ -40,6 +40,8 @@ class CartController extends Controller
     if(count($cart))
     $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
 
+    //dd($subproducts);
+
     if(!count($cart))
         {
             $cart=new cart;
@@ -74,7 +76,7 @@ class CartController extends Controller
     {
         //
 
-        // dd($request);
+         // dd($request);
 
 // creating a new instance of cart for the new user
 
@@ -106,6 +108,7 @@ $checkforproductincart=subproduct_cart::where([
 
          $subproduct_cart->subproduct_id=$request->subproduct_id;
          $subproduct_cart->cart_id=$cart->id;
+         $subproduct_cart->quantity=$request->quantity;
 
          $subproduct_cart->save();
 

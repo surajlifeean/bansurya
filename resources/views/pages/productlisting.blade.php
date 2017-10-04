@@ -380,6 +380,9 @@
 
   <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
   
+
+  <input type="hidden" id="quantity" name="quantity" class="form-control input-number" value="1">
+  
   
               <button class="add-to-cart btn btn-default" type="submit"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
 

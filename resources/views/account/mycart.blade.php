@@ -35,7 +35,7 @@ body {
 Product Card Styles 
 ----------------------*/
 .panel.panel--styled {
-    background: #F4F2F3;
+    background: #F5F5F5;
 }
 .panelTop {
     padding: 30px;
@@ -116,128 +116,173 @@ span.glyphicon {
   width: 2em;
   border-radius: 2px; }
   .color:first-of-type {
-    margin-left: 20px; }                                                                                
+    margin-left: 20px; }                                                                            
+
+
+
+    .returnBtn, .exchangeBtn {
+    width: 105px;
+    padding: 7px 0;
+    border: #dcdcdc 1px solid;
+    display: block;
+    text-align: center;
+    margin: 0 0 5px;
+    float: right;
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #f2f2f2;
+    letter-spacing: 1px;
+    font-family: 'montserratregular';
+    color: #5d5d5d!important;
+}
+
+.img-responsive{
+    width: 60%;
+    height: auto;
+}
+    
 </style>
 
 @endsection
 
 @section('content')
     <h1 class="staticheading" style="text-align:center;">Shopping Bag</h1>
+    
     <div class="container">
         <div class="row">
             
             <div class="col-md-9">
-                <div class="container">    
-                                @php
+                                 @php
 
                                         $totalprice=0;
                                         $totaldiscount=0;
         
                                 @endphp
 
-                    @if($subproducts!=null)
 
-                    @foreach($subproducts as $subproduct)
 
-                    <div class="row">
-            
-
-                        <div class="col-md-8">             
-                         <div class="panel panel-default  panel--styled">
-                              <div class="panel-body">
-                                <div class="col-md-12 panelTop">  
-                                  <div class="col-md-4">  
+                                @foreach($subproducts as $subproduct)
 
                                         @php
                                           $img=$subproduct->images[0]->name
                                         @endphp
                                             
 
-                                    <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$img)}}" alt=""/>
+
+                         <div class="panel panel-default  panel--styled">
+                              <div class="panel-body">
+                                <div class="col-md-12 panelTop">  
+                                  <div class="col-md-4">  
+                                         <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$img)}}" alt=""/>
                                   </div>
-                                <div class="col-md-8">  
+                                  <div class="col-md-6">  
                                 <h3>{{$subproduct->product->name}}</h3>
                                 <p>{{$subproduct->product->description}}</p>
 
                                 <p>
 
 
-                        <h5 class="colors">Color: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};">
-                        </div>
-                            </h5>
+                                <div class="col-md-6">
+                                <h5 class="colors">Color: <div class="color" style="background-color:{{$subproduct->getcolor->color_code}};"></div></h5>
+                            </div>
 
 
-                        <h5 class="colors">Size: <div class="color" style="margin-top: 10px;">{{$subproduct->getsize->name}}
-                        </div>
-                            </h5>
+                                <div class="col-md-6">
+                                <h5 class="colors">Size: <div class="color" style="margin-top: 10px;">{{$subproduct->getsize->name}}</div>
+                                    </h5>
+                                </div>
+                                    <div class="col-md-6">
+
+                                
+                                 <h5 class="colors">Quantity:</h5>
+                                        <div class="input-group">
+                                 
+                                    
+                                        <span class="input-group-btn">
+                                        <button type="button" class="quantity-left-minus btn btn-default btn-number"  data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                        </span>
+
+                                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value=" {{$subproduct->pivot->quantity}}" min="1" max="100" readonly >
+
+                                          <span class="input-group-btn">
+                                        <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
 
                                 </p>
                             
 
 
-                            </div>
+                                   </div>
 
-                        </div>
-                        
-                        <div class="col-md-12 panelBottom">
-                            <div class="col-md-4 text-center">
-                                <button class="btn btn-primary btn-add-to-cart"><span class="glyphicon glyphicon-heart"></span>Add to Wishlist</button>                       
-                            </div>
-                            <div class="col-md-4 text-left">
-                                <h5>Price 
+                                   <div class="col-md-2">  
 
-                                       <strike> Rs{{$subproduct->price}}
+                                    <h5 class="colors"><div class="color">
+                                        
+                                        <strike>Rs{{$subproduct->price}}
                                         </strike>
 
                                          @php
-                                             $totalprice=$subproduct->price+$totalprice;
+                                             $totalprice=$subproduct->price*$subproduct->pivot->quantity+$totalprice;
                                          @endphp
-
-        @if($subproduct->discount_type=="Percentage")
-            Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}
-            ({{$subproduct->discount}}% OFF)
-            
-            @php 
-            $totaldiscount=$totaldiscount+($subproduct->price*$subproduct->discount)/100;
-            @endphp
-        @else
-             Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}% OFF) 
-
-
-            @php 
-            $totaldiscount=$totaldiscount+$subproduct->discount;
-            @endphp
-        @endif
+                                        
+                                        @if($subproduct->discount_type=="Percentage")
+                                            Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}({{$subproduct->discount}}%off)
+                                            
+                                            @php 
+                                            $totaldiscount=$totaldiscount+$subproduct->pivot->quantity*($subproduct->price*$subproduct->discount)/100;
+                                            @endphp
+                                        @else
+                                             Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}%off)
 
 
-                                </h5>
-                            </div>
-                        {!!Form::close()!!}
-       
-                    {!! Form::open(['route'=>['cart.destroy',$subproduct->id],'method'=>'DELETE'])!!}
+                                            @php 
+                                            $totaldiscount=$totaldiscount+$subproduct->discount*$subproduct->pivot->quantity;
+                                            @endphp
+                                        @endif
+
+                                    </div></h5>
 
 
-                           {!!Form::submit('Remove',array('class'=> 'btn-default btn pull-right'))!!}
+              <button class="btn returnBtn" type="submit">Add To Wishlist </button>
 
-                    {!!Form::close()!!}
+                <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
+  
+  
+
+  {!!Form::close()!!}
+
+                                    
+
+                                     {!!Form::open(['route'=>['cart.destroy',$subproduct->id],'method'=>'DELETE'])!!}
+
+                                    {!!Form::submit('Remove',array('class'=> 'btn exchangeBtn'))!!}
+
+
+                                    {!!Form::close()!!}
+
+                                    </div>
+           
+                                 </div>
+
+                             </div>
+                         
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @endforeach
-
-        @else
-            <div>
-            No Products in your cart
-            </div>
-
-        @endif
 
 
-    </div>
-            </div>
+
+
+                        @endforeach
+
+
+
+           </div> <!-- col ends -->
             <div class="col-md-3">
                 @include('partials._billdetails')
             </div>
@@ -246,4 +291,50 @@ span.glyphicon {
 
 
 </div>
+@endsection
+
+
+@section('scripts')
+
+<script type="text/javascript">
+  
+
+
+$(document).ready(function(){
+
+var quantitiy=0;
+   $('.quantity-right-plus').click(function(e){
+        
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+            
+            $('#quantity').val(quantity + 1);
+
+          
+            // Increment
+        
+    });
+
+     $('.quantity-left-minus').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($('#quantity').val());
+        
+        // If is not undefined
+      
+            // Increment
+            if(quantity>0){
+            $('#quantity').val(quantity - 1);
+            }
+    });
+    
+});
+</script>
+
+
 @endsection

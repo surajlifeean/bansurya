@@ -43,7 +43,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="#">Orders</a> <span class="label label-success">$ 320</span>
+                                        <a href="{{route('order.index')}}">Orders</a> <span class="label label-success">$ 320</span>
                                     </td>
                                 </tr>
                                 <tr>

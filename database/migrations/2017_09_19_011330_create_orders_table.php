@@ -17,11 +17,13 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('product_name');
-            $table->string('product_price');
+            $table->string('unit_price');
             $table->string('subproduct_id');
             $table->string('discount');
             $table->string('order_id');
-            $table->string('payment_mode');         
+            $table->string('payment_mode'); 
+            $table->string('order_status'); 
+            $table->string('quantity');
             $table->timestamps();
         });
     }

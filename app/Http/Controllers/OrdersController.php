@@ -19,6 +19,7 @@ use App\Orders;
 
 use Session;
 
+use App\Profileimage;
 class OrdersController extends Controller
 {
     /**
@@ -29,6 +30,18 @@ class OrdersController extends Controller
     public function index()
     {
         //
+
+    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+
+    $category=Category::all();
+    $Subcategory=Subcategory::all();
+
+    $allorders=Orders::where('user_id','=',Auth::user()->id)->orderBy('order_id')->get();
+
+    // dd($allorders);
+
+        return view('order.myorders')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image)->withOrders($allorders);
+
     }
 
     /**
@@ -77,11 +90,12 @@ else
 
     $order->user_id=Auth::user()->id;
     $order->product_name=$subproduct->product->name;
-    $order->product_price=$subproduct->price;
+    $order->unit_price=$subproduct->price;
     $order->subproduct_id=$subproduct->product_id;
     $order->discount=$subproduct->discount;
     $order->order_id=$nextorderid;
     $order->payment_mode=$request->paymentmode;
+    $order->order_status="To Be Delivered";
 
     // $order->product_name
 
