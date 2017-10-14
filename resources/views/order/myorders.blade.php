@@ -80,7 +80,10 @@
     font-family: 'montserratregular';
     color: #5d5d5d!important;
 }
-
+.img-responsive{
+    width: 60%;
+    height: auto;
+}
 
 </style>
 
@@ -115,28 +118,31 @@
 
       					@endif
 
-      					@foreach($orders as $order)
-
-      	                 <div class="panel panel-default  panel--styled">
+      					@foreach($orders as $key=>$order)
+                           <div class="panel panel-default  panel--styled">
                               <div class="panel-body">
                                 <div class="col-md-12 panelTop">  
-                                  <div class="col-md-4">  
-                 						 <img class="img-responsive" src="images/default.png" alt=""/>
+                                  <div class="col-md-4">
+                                  @php
+                                    $image=getimagefromid($order->subproduct_id);
+                                  @endphp  
+                 						 <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$image)}}" alt=""/>
                                   </div>
                                   <div class="col-md-6"> 
                                   <p>{{$order->product_name}}</p> 
-                                  <p>color:{{getcolorfromid($order->subproduct->color)}} &nbsp Quantity:{{$order->quantity}}</p>
-
-                                <p>
-
-
-
-
-                                </p>
-                            
-
-
-                                   </div>
+                                  <div class="row">
+                                  <div class="col-md-1 col-md-offset-4">
+                                    color:
+                                  </div>
+                                  <div class="col-md-1">
+                                    <div style="width:10px; height:10px; background-color:{{getcolorfromid($order->subproduct->color)}};"></div>
+                                  </div>
+                                  <div class="col-md-2"> 
+                                     Quantity:{{$order->quantity}}
+                                  </div>
+                                </div>
+                                  
+                                </div>
 
                                    <div class="col-md-2">  
                                   <p>Rs&nbsp{{$order->unit_price}}</p>
@@ -151,8 +157,18 @@
                                  </div>
 
                              </div>
+
                          
 						</div>
+          <div style="text-align:right; margin-bottom:10px;">
+            @if(isset($orders[$key+1]))
+            @if($orders[$key]->order_id!=$orders[$key+1]->order_id)
+             Order Id:BNY{{strtotime($order->created_at).$order->order_id}}<br>
+            @endif
+            @else
+               Order Id:BNY{{strtotime($order->created_at).$order->order_id}}<br>    
+            @endif
+          </div>
                        @endforeach
              	  </div>      
 

@@ -204,9 +204,12 @@ loop to display the wishlist products will be displayed here -->
                         <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
 
                         <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+
+
+                        <input type="hidden" value="1" id="qty" name="quantity">
             
             
-                        <button class="add-to-cart btn btn-primary" type="submit">add to cart</button>
+                        <button class="add-to-cart btn btn-primary" type="submit">Add to cart</button>
 
                               {!!Form::close()!!}
        
