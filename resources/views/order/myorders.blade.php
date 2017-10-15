@@ -125,7 +125,7 @@
                                   </div>
                                   <div class="col-md-6"> 
                                   <p>{{$order->product_name}}</p> 
-                                  <p>color:{{$order->subproduct->color}} &nbsp Quantity:{{$order->quantity}}</p>
+                                  <p>color:{{getcolorfromid($order->subproduct->color)}} &nbsp Quantity:{{$order->quantity}}</p>
 
                                 <p>
 

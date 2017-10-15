@@ -11,4 +11,6 @@ class Orders extends Model
         return $this->belongsTo('App\subproduct','subproduct_id');
     }
 
+    
+
 }
