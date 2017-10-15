@@ -4,19 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Category;
-
-use App\Subcategory;
-
-
-use App\Profileimage;
-
-use Auth;
-
-use Hash;
-
-use App\User;
-class ChangepwdController extends Controller
+class PersonalinfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,15 +13,7 @@ class ChangepwdController extends Controller
      */
     public function index()
     {
-
-
-            $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
-
-        $category=Category::all();
-    $Subcategory=Subcategory::all();
-
-        return view('account.changepwd')->withCategory($category)->withSubcategory($Subcategory)->withImagedet($image);
-    
+        //
     }
 
     /**
@@ -54,21 +34,7 @@ class ChangepwdController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $password = $request->oldpwd;
-
-        $user=User::find(Auth::user()->id);
-
-        if(Hash::check($password,$user->password))
-             $user->fill([
-                'password' => Hash::make($request->newpwd)
-            ])->save();
- 
-            $request->session()->flash('success', 'Your password has been changed.');
- 
-            return back();
-
-
+        //
     }
 
     /**

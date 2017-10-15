@@ -172,11 +172,14 @@ span.personalInfoValue {
                       
               <div class="tab-pane personalInfoWrapper active">
                   <div class="personalInfoView">
+                    <div class="infodisplay">
+
                   <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                      
                         NAME</label>
-                        <span class="personalInfoValue">
+                        <span class="personalInfoValue username">
                         {{Auth::user()->name}}
                         </span>
                     </div>
@@ -184,7 +187,7 @@ span.personalInfoValue {
                       <label>
                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         EMAIL ID</label>
-                        <span class="personalInfoValue">
+                        <span class="personalInfoValue useremail">
                           {{Auth::user()->email}}
                         </span>
                    
@@ -198,7 +201,7 @@ span.personalInfoValue {
                         <label>
                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         NEWSLETTER SUBSCRIPTION</label>
-                        <span class="personalInfoValue">
+                        <span class="personalInfoValue newslettersub">
                         Email:Yes
                         </span>
                    
@@ -207,13 +210,58 @@ span.personalInfoValue {
                       <label>
                       <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
                         MOBILE NUMBER</label>
-                        <span class="personalInfoValue">
-                        8981527733
+                        <span class="personalInfoValue mobno">
+                         {{Auth::user()->mobile_number}}
                         </span>
 
                     </div>
 
+                  </div> 
+                </div>
+                      
+
+                    {!!Form::open(array('route'=>'profile.store','class'=>'editform'))!!}  
+
+
+                    <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                      
+                        NAME</label>
+                             
+
+                           <input type='text' name='username' value='{{Auth::user()->name}}' class='form-control' id='iusername'>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                          EMAIL</label>
+                      
+                      <input type='text' name='useremail' value='{{Auth::user()->email}}' class='form-control iemail'>
+                    </div>
+                    </div>
+
+                    <div class="row vspace5">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                      
+                        NEWSLETTER SUBSCRIPTION</label>
+                    
+                    
+                      <div class='row'><div class='col-md-6 col-sm-6'><input type='radio' name='newslettersub' value='Yes' class='form-control inewslettersub'>Yes</div><div class='col-md-6 col-sm-6'><input type='radio' name='newslettersub' value='No' class='form-control inewslettersub'>No</div></div>
+                    </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
+                      <label><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                      
+                        MOBILE NO.</label>
+                    
+
+                      <input type='text' name='mobno' value='{{Auth::user()->mobile_number}}' class='form-control imobno'>
+
+                    </div>
                   </div>
+                      {!!Form::close()!!}             
+
                   <!-- <div class="row vspace5">
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                        </div>
@@ -221,12 +269,18 @@ span.personalInfoValue {
 
                   </div> -->
                   <span class="editBtn" id="editPersonalInfo">
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  <span class="" aria-hidden="true"></span>
+                  <div class="edittxt">
                   Edit
-                  </span>
+                </div></span>
+
+
+                  
+
              </div>
               
         </div>
+
     </div>
 </div>
 
@@ -239,8 +293,55 @@ span.personalInfoValue {
 
  @endsection
 
-
-
 @section('scripts')
+
+
+<script type="text/javascript">
+  
+      $('.editform').hide();
+
+  
+
+  $('#editPersonalInfo').click(function(){
+
+      $('.editform').show();
+      $('.infodisplay').hide();
+      $('.edittxt').html("<div id='savetxt'>Save</div>");
+
+
+
+
+  });
+
+
+</script>
+
+<script type="text/javascript">
+  
+$(document).on('click', '#savetxt', function(){
+//         var name = document.getElementById('iusername').value;
+
+//         var email = $('.iemail').val();
+
+//         var mobno = $('.imobno').val();
+
+// console.log(name+email+mobno);
+
+//         $.ajax({
+//         url: "/profile", 
+//         type:"GET",
+//         data:{name:name,email:email,mobno:mobno},
+//         success: function(result){
+
+//           console.log(result);
+
+    
+//     }});
+
+  $('.editform').submit();
+
+        
+    });
+</script>
 
 @endsection

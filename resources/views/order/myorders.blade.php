@@ -123,17 +123,14 @@
                                   <div class="col-md-4">  
                  						 <img class="img-responsive" src="images/default.png" alt=""/>
                                   </div>
-                                  <div class="col-md-6">  
-                                <h3>{{$order->product_name}}</h3>
-                                <p>Description</p>
+                                  <div class="col-md-6"> 
+                                  <p>{{$order->product_name}}</p> 
+                                  <p>color:{{$order->subproduct->color}} &nbsp Quantity:{{$order->quantity}}</p>
 
                                 <p>
 
 
-                        			<h5 class="colors">Color: <div class="color">{{$order->subproduct->color}}</div></h5>
 
-
-                                    <h5 class="colors">Size: <div class="color" style="margin-top: 10px;">{{$order->subproduct->size}}</div></h5>
 
                                 </p>
                             
@@ -142,10 +139,13 @@
                                    </div>
 
                                    <div class="col-md-2">  
+                                  <p>Rs&nbsp{{$order->unit_price}}</p>
 
-                        			<h4 class="colors">INR {{$order->product_price}} <div class="color"></div></h4>
-                                   		<a href="" class="btn returnBtn">Return</a>
+                                  		<a href="" class="btn returnBtn">Return</a>
+                                      
              							<a href="" class="btn exchangeBtn">Exchange</a>
+                          <p>Order Date:{{date('d-m-y', strtotime($order->created_at))}}</p>
+                                  
              						</div>
            
                                  </div>
@@ -162,5 +162,10 @@
       
 	</div>  <!-- row ends -->
 </div> <!-- container ends -->
+
+@endsection
+
+@section('script')
+  
 
 @endsection

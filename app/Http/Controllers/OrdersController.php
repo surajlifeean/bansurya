@@ -13,6 +13,8 @@ use App\cart;
 
 use App\subproducts;
 
+use App\subproduct_cart;
+
 use Auth;
 
 use App\Orders;
@@ -77,10 +79,10 @@ class OrdersController extends Controller
 
     $peakorderid=Orders::orderBy('order_id','desc')->first();
 
-if(count($peakorderid)==0)
-    $nextorderid=1;
-else
-    $nextorderid=++$peakorderid->order_id;
+        if(count($peakorderid)==0)
+            $nextorderid=1;
+        else
+            $nextorderid=++$peakorderid->order_id;
 
 
  
@@ -91,15 +93,33 @@ else
     $order->user_id=Auth::user()->id;
     $order->product_name=$subproduct->product->name;
     $order->unit_price=$subproduct->price;
-    $order->subproduct_id=$subproduct->product_id;
+    $order->subproduct_id=$subproduct->id;
     $order->discount=$subproduct->discount;
     $order->order_id=$nextorderid;
+    $order->quantity=$subproduct->pivot->quantity;
     $order->payment_mode=$request->paymentmode;
     $order->order_status="To Be Delivered";
 
     // $order->product_name
 
     $order->save();
+}
+
+
+
+
+       $cart_id=session('cart_id');
+       $subproduct_cart=subproduct_cart::where('cart_id','=',$cart_id)->get();
+
+
+        foreach($subproduct_cart as $csp) {  //csp=cart sub product
+        
+        $csp->delete();
+
+        $cc=session('cart_count');
+        session(['cart_count'=>$cc-1]);
+
+
 }
 
 

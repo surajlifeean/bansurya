@@ -99,7 +99,7 @@ $checkforproductincart=subproduct_cart::where([
     if(count($checkforproductincart)!=0){
         Session::flash('success','You Aleardy Have This Product in Your Cart!!');
 
-         return redirect()->route('product.show',$request->subproduct_id);
+             return redirect()->back();
 
 }
 
@@ -127,7 +127,7 @@ $checkforproductincart=subproduct_cart::where([
 
         Session::flash('success','Product Added To Cart!!');
 
-         return redirect()->route('product.show',$request->subproduct_id);
+         return redirect()->back();
 
     }
 
@@ -198,9 +198,9 @@ $checkforproductincart=subproduct_cart::where([
         $cart_id=session('cart_id');
         
         $pro=subproduct_cart::where([
-    ['subproduct_id', '=', $id],
-    ['cart_id', '=', $cart_id],
-    ])->first();
+            ['subproduct_id', '=', $id],
+            ['cart_id', '=', $cart_id],
+            ])->first();
 
         $pro->delete();
 

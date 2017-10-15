@@ -30,19 +30,21 @@
                     @foreach($subproducts as $subproduct)
 
                                         @php
-                                             $totalprice=$subproduct->price+$totalprice;
+                                             $totalprice=$subproduct->price*$subproduct->pivot->quantity+$totalprice;
                                          @endphp
+                                        
+                                        @if($subproduct->discount_type=="Percentage")
+                                            
+                                            @php 
+                                            $totaldiscount=$totaldiscount+$subproduct->pivot->quantity*($subproduct->price*$subproduct->discount)/100;
+                                            @endphp
+                                        @else
+                                        
 
-    @if($subproduct->discount_type=="Percentage")
-        
-        @php 
-        $totaldiscount=$totaldiscount+($subproduct->price*$subproduct->discount)/100;
-        @endphp
-    @else
-        @php 
-        $totaldiscount=$totaldiscount+$subproduct->discount;
-        @endphp
-    @endif
+                                            @php 
+                                            $totaldiscount=$totaldiscount+$subproduct->discount*$subproduct->pivot->quantity;
+                                            @endphp
+                                        @endif
 
 
 

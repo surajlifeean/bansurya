@@ -5,7 +5,7 @@
           <span class="glyphicon glyphicon-menu-hamburger"></span>
           
         </button>
-        <a href="{{route('home')}}"><img src="/images/logo2.jpg" height="70px" weight="90px" alt="Bansurya">
+        <a href="{{route('home')}}"><img src="/images/logo2.png" height="70px" weight="90px" alt="Bansurya">
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
@@ -280,6 +280,14 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Mobile No.</label>
+
+                            <div class="col-md-6">
+                                <input id="number" type="number" class="form-control" name="number" value=""  required>
+
                             </div>
                         </div>
 

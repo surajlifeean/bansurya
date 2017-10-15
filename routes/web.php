@@ -30,6 +30,9 @@ Route::get('/paralax', function () {
 // });
 
 
+Route::resource('profile','ProfileController');
+
+
 Route::get('home','HomeController@index');
 
 //Route::post('register','ProductController@register');
@@ -71,8 +74,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/aboutus', 'StaticpagesController@aboutus')->name('aboutus');
 
-Route::any('/contactus', 'ContactusController@store')->name('contactus');
+Route::get('/quantityincrement', 'QuantityupdateController@increment');
 
+Route::get('/quantitydecrement', 'QuantityupdateController@decrement');
+
+Route::any('/contactus', 'ContactusController@store')->name('contactus');
 
 Route::get('/policy', 'StaticpagesController@policy')->name('policy');
 

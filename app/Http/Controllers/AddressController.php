@@ -152,7 +152,6 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
 
-
         $this->validate($request,array(
 
         
@@ -178,9 +177,11 @@ class AddressController extends Controller
         $address->save();
 
 
-           Session::flash('success','Your Address is updated!');
+           // Session::flash('success','Your Address is updated!');
 
-        return redirect()->route('address.index');
+        // return redirect()->route('address.index');
+
+        return redirect()->back()->with('success', 'Your Query Is Submitted!');
 
     }
 

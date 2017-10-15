@@ -165,7 +165,8 @@ span.personalInfoValue {
 
         </div>
         <div class="col-sm-9 col-md-9">
-            <div class="well">
+         {!!Form::open(array('route'=>'changepwd.store','class'=>'changepwd'))!!}             
+    <div class="well">
               <div class="tab-content">
               <label>
                       <U>CHANGE PASSWORD</U></label>
@@ -176,7 +177,7 @@ span.personalInfoValue {
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         Old Password</label>
-                       <input id="oldpwd" name="region" type="text" placeholder="Old Password"
+                       <input id="oldpwd" name="oldpwd" type="text" placeholder="Old Password"
                         class="input-xlarge form-control">
                        
                     </div>
@@ -184,7 +185,7 @@ span.personalInfoValue {
                       <label>
                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         New Password</label>
-                       <input id="newpwd" name="region" type="text" placeholder="New Password"
+                       <input id="newpwd" name="newpwd" type="text" placeholder="New Password"
                         class="input-xlarge form-control">
                        
 
@@ -197,7 +198,7 @@ span.personalInfoValue {
                         <label>
                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         Confirm New Password</label>
-                        <input id="cnewpwd" name="region" type="text" placeholder="Confirm Password"
+                        <input id="cnewpwd" name="cnewpwd" type="text" placeholder="Confirm Password"
                         class="input-xlarge form-control">
                        
                        </div>
@@ -219,15 +220,16 @@ span.personalInfoValue {
 
                   </div> -->
                   <span class="editBtn" id="editPersonalInfo">
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                  Edit
+                  Change
                   </span>
+                                   {!!Form::close()!!}
+
              </div>
               
         </div>
     </div>
 </div>
-
+</form>
 </div>
 </div>
 
@@ -240,5 +242,12 @@ span.personalInfoValue {
 
 
 @section('scripts')
+    <script>
+        $('#editPersonalInfo').click(function(event){
+            event.preventDefault();
+            $('.changepwd').submit();
 
+
+        });
+    </script>
 @endsection

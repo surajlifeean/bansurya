@@ -160,6 +160,11 @@ span.glyphicon {
                                 @endphp
 
 
+                                @if(count($subproducts)==0)
+                                <div class="col-md-8 col-md-offset-4">
+                                 <img class="img-responsive" src="{{asset('/images/emptycart.png')}}" alt="Your Cart Is Empty"/>
+                                 </div>
+                                  @endif
 
                                 @foreach($subproducts as $subproduct)
 
@@ -199,15 +204,15 @@ span.glyphicon {
                                  
                                     
                                         <span class="input-group-btn">
-                                        <button type="button" class="quantity-left-minus btn btn-default btn-number"  data-type="minus" data-field="">
+                                        <button type="button" class="quantity-left-minus btn btn-default btn-number"  data-type="minus" data-field="" onclick="decreasequantity({{$subproduct->id}},{{$subproduct->pivot->quantity}})">
                                           <span class="glyphicon glyphicon-minus"></span>
                                         </button>
                                         </span>
 
-                                          <input type="text" id="quantity" name="quantity" class="form-control input-number" value=" {{$subproduct->pivot->quantity}}" min="1" max="100" readonly >
+                                          <input type="text" id="quantity-{{$subproduct->id}}" name="quantity" class="form-control input-number" value=" {{$subproduct->pivot->quantity}}" min="1" max="100" readonly >
 
                                           <span class="input-group-btn">
-                                        <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="">
+                                        <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="" onclick="increasequantity({{$subproduct->id}},{{$subproduct->pivot->quantity}})">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </button>
                                     </span>
@@ -267,6 +272,13 @@ span.glyphicon {
 
                                     {!!Form::close()!!}
 
+
+                                   <!--  <form method="get" action="/quantityincrement" class="test-form">
+
+                                        <input type="hidden" name="id" value="{{$subproduct->id}}">
+
+                                    </form>
+ -->
                                     </div>
            
                                  </div>
@@ -300,40 +312,101 @@ span.glyphicon {
   
 
 
-$(document).ready(function(){
+function increasequantity(id,quantity){
 
-var quantitiy=0;
-   $('.quantity-right-plus').click(function(e){
-        
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        var quantity = parseInt($('#quantity').val());
-        
-        // If is not undefined
-            
-            $('#quantity').val(quantity + 1);
 
-          
-            // Increment
-        
-    });
+        $.ajax({
+        url: "/quantityincrement", 
+        type:"GET",
+        data:{quantity:quantity,id:id},
+        success: function(result){
 
-     $('.quantity-left-minus').click(function(e){
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        var quantity = parseInt($('#quantity').val());
-        
-        // If is not undefined
-      
-            // Increment
-            if(quantity>0){
-            $('#quantity').val(quantity - 1);
-            }
-    });
+                location.reload();
     
-});
+    }});
+    
+    // $(".test-form").submit();
+        
+    
+
+    
+}
+
+
+function decreasequantity(id,quantity){
+
+
+        if(quantity==1)
+            alert("Quantity Of a Product in Cart Can Not Be Made Zero")
+
+        else
+        $.ajax({
+        url: "/quantitydecrement", 
+        type:"GET",
+        data:{quantity:quantity,id:id},
+        success: function(result){
+
+                location.reload();
+    
+    }});
+    
+        
+    
+
+    
+}
+
+// $(document).ready(function(){
+
+// var quantitiy=0;
+//    $('.quantity-right-plus').click(function(e){
+        
+//         // Stop acting like a button
+//         e.preventDefault();
+//         // Get the field name
+
+//         console.log(e.target.id);
+//         var id=e.target.id;
+//         alert (id);
+//         var quantity = parseInt($('#quantity-'+id).val());
+        
+    //     $.ajax({
+    //     url: "/quantityincrement", 
+    //     type:"GET",
+    //     data:{quantity:quantity},
+    //     success: function(result){
+
+    //             alert(result);
+    
+    // }});
+    
+        
+    // });
+
+//      $('.quantity-left-minus').click(function(e){
+//         // Stop acting like a button
+//         e.preventDefault();
+//         // Get the field name
+//         console.log(e.target.id);
+//         var id=e.target.id;
+//         alert (id);
+//         var quantity = parseInt($('#quantity-'+id).val());
+        
+//             $.ajax({
+//         url: "/quantitydecrement", 
+//         type:"GET",
+//         data:{quantity:quantity},
+//         success: function(result){
+
+//                 alert(result);
+    
+//     }
+// });
+
+
+//        });
+    
+// });
 </script>
 
 
