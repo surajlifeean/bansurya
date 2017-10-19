@@ -30,6 +30,15 @@ class HomeController extends Controller
         if(Auth::user()){
         $cart=cart::where('user_id','=',Auth::user()->id)->first();
 
+
+}
+        else{
+            $guest_id=session('guest_id');
+            $cart=cart::where('user_id','=',$guest_id)->first();
+}
+
+        
+
         if(count($cart)){
         session(['cart_id' => $cart->id]);
         $subproducts=subproduct_cart::select('subproduct_id')->distinct()->where('cart_id','=',$cart->id)
@@ -40,11 +49,6 @@ class HomeController extends Controller
             session(['cart_count' => $subproducts]);
 
     }
-}
-        else
-            session(['cart_count'=>'0']);
-
-
 
     if(Auth::user()){
 

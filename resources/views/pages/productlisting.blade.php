@@ -3,7 +3,6 @@
 <!-- {{dump($sizes)}}
  -->
 
-
 @extends('main')
 
 @section('stylesheets')
@@ -368,17 +367,26 @@
 
 </td>
 <td>
-  @if (Auth::guest())
-  
-     <a data-toggle="modal" data-target="#myModal">
-              <button class="add-to-cart btn btn-default" type="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+  @if(Auth::guest())
+     @php
+    if(Session::has('guest_id'))
+        
+        $id=session('guest_id');
 
-@else
+      else
+        $id=createguest();
+      @endphp
+
+
+  @else
+    $id=Auth::user->id;
+   @endif
+
     {!!Form::open(array('route'=>'cart.store'))!!}
 
   <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
 
-  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+  <input type="hidden" value="{{$id}}" id="id" name="user_id">
   
 
   <input type="hidden" id="quantity" name="quantity" class="form-control input-number" value="1">
@@ -388,7 +396,6 @@
 
   {!!Form::close()!!}
 
-@endif
 
 <!--   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
  --></td>

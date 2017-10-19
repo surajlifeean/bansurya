@@ -185,9 +185,31 @@
 
 
   @if (Auth::guest())
+      
+      @php
+      if(Session::has('guest_id'))
+        
+        $id=session('guest_id');
+
+      else
+        $id=App\Http\Controllers\myhelper::createguest();
+      @endphp
+
+
+     {!!Form::open(array('route'=>'cart.store'))!!}
+
+  <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
+
+  <input type="hidden" value="{{$id}}" id="id" name="user_id">
+
   
-     <a data-toggle="modal" data-target="#myModal">
-              <button class="add-to-cart btn btn-default" type="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+  <input type="hidden" id="quantity" name="quantity" class="form-control input-number" value="1">
+  
+  
+  
+              <button class="add-to-cart btn btn-default" type="submit"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+
+  {!!Form::close()!!}
 
 @else
     {!!Form::open(array('route'=>'cart.store'))!!}

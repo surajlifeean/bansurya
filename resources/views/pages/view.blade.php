@@ -171,17 +171,39 @@
                                     </span>
 
 
+
+
+
+
     {!!Form::open(array('route'=>'cart.store','class'=>'addtocart'))!!}
 
   <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
 
-  <input type="hidden" value="{{Auth::user()->id}}" id="id" name="user_id">
+@if(Auth::guest())
+   @php
+ if(Session::has('guest_id'))
+        
+        $id=session('guest_id');
+
+      else
+        $id=createguest();
+  @endphp
+@else
+        $id=Auth::user()->id;
+@endif
+
+  <input type="hidden" value="{{$id}}" id="id" name="user_id">
   
 
   <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100" readonly>
   
 
    {!!Form::close()!!}
+
+
+
+
+
                                   <span class="input-group-btn">
                                         <button type="button" class="quantity-right-plus btn btn-default btn-number" data-type="plus" data-field="">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -195,17 +217,9 @@
 
 <table>
   <tr> <td>
-@if (Auth::guest())
   
-     <a data-toggle="modal" data-target="#myModal">
-              <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+              <button class="add-to-cart btn btn-default add-to-cart-submit" type="submit">Add to cart</button>
 
-@else
-  
-              <button class="add-to-cart btn btn-default add-to-cart-submit" type="submit">add to cart</button>
-
-  
-@endif
 </td>
 <td>
 
