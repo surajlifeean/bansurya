@@ -13,7 +13,7 @@
 			<span class="pull-right">
 				Rs. 
 				<span id="discount_price_summery"> 
-					{{$totaldiscount}}
+					{{$totalprice-$totalsp}}
 				</span>
 			</span>
 		</p>
@@ -36,7 +36,7 @@
 		<h4 class="couponTitle">Order Total 
 			<span class="pull-right">
 				Rs. 
-				<span id="order_total_summery">{{$totalprice-$totaldiscount}}</span>
+				<span id="order_total_summery">{{$totalsp}}</span>
 				<input type="hidden" id="bag-total-balance" value="1949">
 			</span>
 		</h4> 

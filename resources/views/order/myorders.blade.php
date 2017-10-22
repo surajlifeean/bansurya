@@ -124,7 +124,7 @@
                                 <div class="col-md-12 panelTop">  
                                   <div class="col-md-4">
                                   @php
-                                    $image=getimagefromid($order->subproduct_id);
+                                    $image=App\Http\Controllers\myhelper::getimagefromid($order->subproduct_id);
                                   @endphp  
                  						 <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$image)}}" alt=""/>
                                   </div>
@@ -135,7 +135,7 @@
                                     color:
                                   </div>
                                   <div class="col-md-1">
-                                    <div style="width:10px; height:10px; background-color:{{getcolorfromid($order->subproduct->color)}};"></div>
+                                    <div style="width:10px; height:10px; background-color:{{App\Http\Controllers\myhelper::getcolorfromid($order->subproduct->color)}};"></div>
                                   </div>
                                   <div class="col-md-2"> 
                                      Quantity:{{$order->quantity}}
@@ -145,8 +145,8 @@
                                 </div>
 
                                    <div class="col-md-2">  
-                                  <p>Rs&nbsp{{$order->unit_price}}</p>
-
+                                  <p><strike>Rs&nbsp{{$order->unit_price}}</strike></p>
+                                  <p>Rs&nbsp{{$order->unit_sp}}</p>
                                   		<a href="" class="btn returnBtn">Return</a>
                                       
              							<a href="" class="btn exchangeBtn">Exchange</a>

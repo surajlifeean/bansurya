@@ -74,6 +74,8 @@ class ProductbycategoryController extends Controller
         ->where('categories.id','=',$id)
         ->get();
 
+       
+
     $images=Product_Image::select(DB::raw("min(id) as id"))
     ->groupBy('p_id')
             ->get();

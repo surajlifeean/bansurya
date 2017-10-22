@@ -87,4 +87,9 @@ Route::resource('ajaxreq', 'AjaxController');
 Route::get('auth/{provider}', 'AuthController@redirectToProvider');
 
 Route::get('auth/{provider}/callback', 'AuthController@handleProviderCallback');
+
+Route::get('guest-shop','GuestshopController@index')->name('guest-shop');
+
+Route::post('guest-shop','GuestshopController@store')->name('guest-shop.store');
+
 ?>

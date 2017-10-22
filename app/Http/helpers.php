@@ -36,6 +36,9 @@ public static function createguest(){
 	$user->name="Guest";
 	$user->save();
 
+	 session(['cart_count' => 0]);
+   
+
 	session(['guest_id' =>$user->id]);
 
 	return $user->id;

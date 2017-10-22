@@ -173,13 +173,9 @@
 <tr>
 <td>
      <strike> Rs{{$sproduct->price}}</strike>
-    @if($sproduct->discount_type=="Percentage")
-        Rs{{$sproduct->price-($sproduct->price*$sproduct->discount)/100}}
-        ({{$sproduct->discount}}% OFF)
-    @else
-         Rs{{$sproduct->price-$sproduct->discount}}({{floor($sproduct->discount*100/$sproduct->price)}}% OFF) 
-    @endif
-
+             Rs{{$sproduct->sale_price}}
+        ({{($sproduct->price-$sproduct->sale_price)*100/$sproduct->price}}% OFF)
+    
 </td>
 <td>
 
@@ -195,8 +191,8 @@
         $id=App\Http\Controllers\myhelper::createguest();
       @endphp
 
-
-     {!!Form::open(array('route'=>'cart.store'))!!}
+    
+{!!Form::open(array('route'=>'cart.store'))!!}
 
   <input type="hidden" value="{{$sproduct->id}}" id="subproduct" name="subproduct_id">
 

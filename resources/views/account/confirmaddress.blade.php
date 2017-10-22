@@ -396,29 +396,21 @@ span.glyphicon {
 			  					@php
 
                                         $totalprice=0;
-                                        $totaldiscount=0;
+                                        $totalsp=0;
         
                                 @endphp
                     @foreach($subproducts as $subproduct)
 
-                                     
-                                         @php
+                           @php
                                              $totalprice=$subproduct->price*$subproduct->pivot->quantity+$totalprice;
                                          @endphp
                                         
-                                        @if($subproduct->discount_type=="Percentage")
-                                            
+                                    
+                                       
                                             @php 
-                                            $totaldiscount=$totaldiscount+$subproduct->pivot->quantity*($subproduct->price*$subproduct->discount)/100;
+                                            $totalsp=$totalsp+$subproduct->pivot->quantity*($subproduct->sale_price)
                                             @endphp
-                                        @else
-                                        
-
-                                            @php 
-                                            $totaldiscount=$totaldiscount+$subproduct->discount*$subproduct->pivot->quantity;
-                                            @endphp
-                                        @endif
-
+                                      
 
 
 @endforeach

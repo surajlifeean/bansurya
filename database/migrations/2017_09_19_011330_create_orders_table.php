@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('product_name');
             $table->string('unit_price');
             $table->string('subproduct_id');
-            $table->string('discount');
+            $table->string('unit_sp');
             $table->string('order_id');
             $table->string('payment_mode'); 
             $table->string('order_status'); 

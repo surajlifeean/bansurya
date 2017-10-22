@@ -156,7 +156,7 @@
     <div class="col-md-9 col-sm-9 col-xs-12">
 
         
-  <h3 class="staticheading">{{$subproducts[0]->title}}</h3>
+  <h3 class="staticheading">@if(count($subproducts)){{$subproducts[0]->title}}@endif</h3>
 
     </div>
 
@@ -213,54 +213,7 @@
 
                   <div id="showPrice"></div>
                   <div id="showDiv"></div>
-<!-- 
- <button onclick="send()">Click</button>
-              -->
-                 <!--  <div class="panel-heading " >
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" href="#collapse1">
-                        <i class="indicator fa fa-caret-right" aria-hidden="true"></i>Type
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse1" class="panel-collapse collapse" >
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" value="">
-                            Assam Silk Saree
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox" >
-                          <label>
-                            <input type="checkbox" value="">
-                            Banarasi
-                          </label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="checkbox"  >
-                          <label>
-                            <input type="checkbox" value="">
-                            Dhakai
-                          </label>
-                        </div>
-                      </li>
-                    <li class="list-group-item">
-                        <div class="checkbox"  >
-                          <label>
-                            <input type="checkbox" value="">
-                             Tant – Cotton
-                          </label>
-                        </div>
-                      </li>
-                    
-                    </ul>
-                  </div>
-                  -->
+
 
                    <div class="panel-heading" >
                     <h4 class="panel-title">
@@ -315,7 +268,7 @@
 
 <div class="row">
   
-
+@if(count($subproducts)!=0)
 @foreach($subproducts as $subproduct)
 
 <div class="col-md-4 col-sm-4 col-xs-6 ">
@@ -358,13 +311,10 @@
 <tr>
 <td>
      <strike> Rs{{$subproduct->price}}</strike>
-    @if($subproduct->discount_type=="Percentage")
-        Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}
-        ({{$subproduct->discount}}% OFF)
-    @else
-         Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}% OFF) 
-    @endif
-
+  
+             Rs{{$subproduct->sale_price}}
+        ({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}% OFF)
+    
 </td>
 <td>
   @if(Auth::guest())
@@ -379,7 +329,7 @@
 
 
   @else
-    $id=Auth::user->id;
+    @php $id=Auth::user()->id @endphp
    @endif
 
     {!!Form::open(array('route'=>'cart.store'))!!}
@@ -407,7 +357,7 @@
 </div>
   
 @endforeach  
-  
+@endif
   
 </div>
 

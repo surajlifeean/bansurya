@@ -32,10 +32,17 @@ class CartController extends Controller
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
+if(Auth::guest()){
+
+    $id=session('guest_id');
+}
+else{
     $id=Auth::user()->id;
+}
+    
 
     $cart=cart::select('id')->where('user_id','=',$id)->first();
-
+    $subproducts=null;
 
     if(count($cart))
     $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
@@ -45,7 +52,7 @@ class CartController extends Controller
     if(!count($cart))
         {
             $cart=new cart;
-            $cart->user_id=Auth::user()->id;
+            $cart->user_id=$id;
             $cart->save();
          }
 
@@ -143,9 +150,13 @@ $checkforproductincart=subproduct_cart::where([
 
     $category=Category::all();
     $Subcategory=Subcategory::all();
-
+if(Auth::guest()){
+    $uid=session('guest_id');
+}
+else{
     $uid=Auth::user()->id;
-
+}
+    
     $cart=cart::select('id')->where('user_id','=',$uid)->first();
 
     $address=Address::where('user_id','=',$uid)->first();

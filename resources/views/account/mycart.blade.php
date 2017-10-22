@@ -155,7 +155,7 @@ span.glyphicon {
                                  @php
 
                                         $totalprice=0;
-                                        $totaldiscount=0;
+                                        $totalsp=0;
         
                                 @endphp
 
@@ -164,7 +164,9 @@ span.glyphicon {
                                 <div class="col-md-8 col-md-offset-4">
                                  <img class="img-responsive" src="{{asset('/images/emptycart.png')}}" alt="Your Cart Is Empty"/>
                                  </div>
-                                  @endif
+                                 
+                                @endif
+
 
                                 @foreach($subproducts as $subproduct)
 
@@ -237,28 +239,20 @@ span.glyphicon {
                                              $totalprice=$subproduct->price*$subproduct->pivot->quantity+$totalprice;
                                          @endphp
                                         
-                                        @if($subproduct->discount_type=="Percentage")
-                                            Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}({{$subproduct->discount}}%off)
-                                            
+                                    
+                                         Rs{{$subproduct->sale_price}}({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}%&nbspOFF)
+            
                                             @php 
-                                            $totaldiscount=$totaldiscount+$subproduct->pivot->quantity*($subproduct->price*$subproduct->discount)/100;
+                                            $totalsp=$totalsp+$subproduct->pivot->quantity*($subproduct->sale_price)
                                             @endphp
-                                        @else
-                                             Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}%off)
-
-
-                                            @php 
-                                            $totaldiscount=$totaldiscount+$subproduct->discount*$subproduct->pivot->quantity;
-                                            @endphp
-                                        @endif
-
+                                        
                                     </div></h5>
 
 
               <button class="btn returnBtn" type="submit">Add To Wishlist </button>
-
+@if(Auth::user())
                 <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
-  
+@endif
   
 
   {!!Form::close()!!}

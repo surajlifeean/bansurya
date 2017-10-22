@@ -134,13 +134,10 @@
 							
 
 							<strike> Rs{{$subproduct->price}}</strike>
-    @if($subproduct->discount_type=="Percentage")
-        Rs{{$subproduct->price-($subproduct->price*$subproduct->discount)/100}}
-        ({{$subproduct->discount}}% OFF)
-    @else
-         Rs{{$subproduct->price-$subproduct->discount}}({{floor($subproduct->discount*100/$subproduct->price)}}% OFF) 
-    @endif
-
+                  
+             Rs{{$subproduct->sale_price}}
+        ({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}% OFF)
+    
 
 						</span></h4>
 						<p class="vote"><strong>
@@ -177,9 +174,8 @@
 
     {!!Form::open(array('route'=>'cart.store','class'=>'addtocart'))!!}
 
-  <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
-
 @if(Auth::guest())
+  
    @php
  if(Session::has('guest_id'))
         
@@ -188,9 +184,13 @@
       else
         $id=createguest();
   @endphp
+
 @else
-        $id=Auth::user()->id;
+ @php $id=Auth::user()->id; @endphp
 @endif
+
+
+  <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
 
   <input type="hidden" value="{{$id}}" id="id" name="user_id">
   

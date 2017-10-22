@@ -71,7 +71,10 @@ class OrdersController extends Controller
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
-    $id=Auth::user()->id;
+       if(Auth::user())
+            $id=Auth::user()->id;
+        else
+            $id=session('guest_id');       
 
     $cart=cart::select('id')->where('user_id','=',$id)->first();
 
@@ -92,11 +95,11 @@ class OrdersController extends Controller
         # code...
     $order=new Orders;
 
-    $order->user_id=Auth::user()->id;
+    $order->user_id=$id;
     $order->product_name=$subproduct->product->name;
     $order->unit_price=$subproduct->price;
     $order->subproduct_id=$subproduct->id;
-    $order->discount=$subproduct->discount;
+    $order->unit_sp=$subproduct->sale_price;
     $order->order_id=$nextorderid;
     $order->quantity=$subproduct->pivot->quantity;
     $order->payment_mode=$request->paymentmode;

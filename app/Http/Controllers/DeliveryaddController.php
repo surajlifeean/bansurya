@@ -51,7 +51,11 @@ class DeliveryaddController extends Controller
           $category=Category::all();
           $Subcategory=Subcategory::all();
   
-        
+        if(Auth::user())
+            $id=Auth::user()->id;
+        else
+            $id=session('guest_id');       
+
         $this->validate($request,array(
 
         
@@ -72,14 +76,12 @@ class DeliveryaddController extends Controller
         $address->city=$request->city;
         $address->region=$request->region;
         $address->pcode=$request->pcode;
-        $address->user_id=Auth::user()->id;
+        $address->user_id=$id;
 
         $address->save();
 
 
            // Session::flash('success','Your Address is Added!');
-
-    $id=Auth::user()->id;
 
     $cart=cart::select('id')->where('user_id','=',$id)->first();
 
@@ -88,6 +90,10 @@ class DeliveryaddController extends Controller
     if(count($cart))
     $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
 
+if(Auth::guest()){
+        return view('account.Delivery-details')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart);   
+}
+        else
         return view('account.paymentoption')->withCategory($category)->withSubcategory($Subcategory)->withSubproducts($subproducts)->withCart($cart);
 
 

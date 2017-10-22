@@ -80,19 +80,22 @@
 
           </li>
           <li>
-            
-@if (Auth::guest())
+     
+@if(Auth::guest())
   
-     <a data-toggle="modal" data-target="#myModal">
-        <i class="glyphicon glyphicon-shopping-cart">           </i>
-             <span class="badge" style="margin-top:-25px; margin-left:-10px; font-family: auto;">
+   @php
+ if(Session::has('guest_id'))
+        
+        $id=session('guest_id');
 
-              {{Session::get('cart_count')}}
-            
-          </span></a>
-
+      else
+        $id=createguest();
+  @endphp
 
 @else
+ @php $id=Auth::user()->id; @endphp
+@endif
+
 
               <a href="{{route('cart.index')}}"><i class="glyphicon glyphicon-shopping-cart"></i>                 <span class="badge" style="margin-top:-25px; margin-left:-10px; font-family: auto;">
 
@@ -101,8 +104,6 @@
           </span></a>
 
 
-
-@endif
         </li>
         </ul>
     </div>
@@ -189,65 +190,6 @@
                         </div>
                     </form>
 
-<!-- 
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-
- -->
-
-
-
 
 
                             </div>
@@ -283,10 +225,10 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Mobile No.</label>
+                            <label for="mobile_number" class="col-md-4 control-label">Mobile No.</label>
 
                             <div class="col-md-6">
-                                <input id="number" type="number" class="form-control" name="number" value=""  required>
+                                <input id="mobile_number" type="number" class="form-control" name="mobile_number" value=""  required>
 
                             </div>
                         </div>

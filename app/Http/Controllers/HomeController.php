@@ -64,7 +64,7 @@ class HomeController extends Controller
 
     $category=Category::all();
     $Subcategory=Subcategory::all();
-    $subproduct=subproduct::all();
+    $subproduct=subproduct::where('new_arrival','=','1')->get();
     
     return view('pages.home')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproduct);
     }

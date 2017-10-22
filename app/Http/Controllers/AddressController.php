@@ -99,6 +99,8 @@ class AddressController extends Controller
 
            Session::flash('success','Your Address is Added!');
 
+
+
         return redirect()->route('address.index');
 
     }
