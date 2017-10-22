@@ -163,9 +163,10 @@
     <div class="col-md-3  col-sm-3 col-xs-12">    
 <label for="sel1">SORT BY:</label>
       <select class="form-control" id="sel1">
-        <option>Price: High to Low</option>
-        <option>Price: Low to High</option>
-        <option>What's New</option>
+        <option>Select</option>
+        <option value="htol">Price: High to Low</option>
+        <option value="ltoh">Price: Low to High</option>
+        <option value="new">What's New</option>
       
       </select>
       </div>
@@ -313,7 +314,7 @@
      <strike> Rs{{$subproduct->price}}</strike>
   
              Rs{{$subproduct->sale_price}}
-        ({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}% OFF)
+        ({{floor(($subproduct->price-$subproduct->sale_price)*100/$subproduct->price)}}% OFF)
     
 </td>
 <td>
@@ -324,7 +325,7 @@
         $id=session('guest_id');
 
       else
-        $id=createguest();
+        $id=App\Http\Controllers\myhelper::createguest();
       @endphp
 
 
@@ -446,30 +447,5 @@ $(function() {
          });
       </script>
 
-<!--       <script>
-
-      	function send(){
-
-      		var start=$("#start_price").val();
-      		var end=$("#end_price").val();
-      		// alert(start+end);
-
-      		$.ajax({
-               type:'GET',
-               url:'post.php',
-               data:{start:start},
-               success:function(data){
-                
-                $.each(data,function(index,data){
-                   $('#showDiv').append(data);
-                 });
-                 
-               }
-            });
-
-}
-      
-
-      </script>
- -->
+ 
 @endsection

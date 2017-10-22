@@ -1,4 +1,4 @@
-<!-- {{dump($subproducts)}} -->
+{{dump($subproducts)}} 
 
 @extends('main')
 
@@ -240,7 +240,7 @@ span.glyphicon {
                                          @endphp
                                         
                                     
-                                         Rs{{$subproduct->sale_price}}({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}%&nbspOFF)
+                                         Rs{{$subproduct->sale_price}}({{floor(($subproduct->price-$subproduct->sale_price)*100/$subproduct->price)}}%&nbspOFF)
             
                                             @php 
                                             $totalsp=$totalsp+$subproduct->pivot->quantity*($subproduct->sale_price)
@@ -254,10 +254,7 @@ span.glyphicon {
                 <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
 @endif
   
-
-  {!!Form::close()!!}
-
-                                    
+                       
 
                                      {!!Form::open(['route'=>['cart.destroy',$subproduct->id],'method'=>'DELETE'])!!}
 

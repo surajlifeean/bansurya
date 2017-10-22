@@ -133,14 +133,19 @@
 <div class="row">
 
 @foreach($subproduct as $sproduct)
+
   <div class="col-md-3 col-sm-4 col-xs-6 ">
     <a href="{{route('product.show',$sproduct->id)}}" class="thumbnail">
     @php
       $img=$sproduct->images[0]->name
     @endphp
-        
-                
-      <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya">
+<!--     @if($sproduct->quantity==0)
+      <div class="out-of-stock" style="margin-bottom:px;">Out of Stock</div>
+    @endif -->
+      <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya" 
+@if($sproduct->quantity==0)
+   style="opacity: 0.5;"
+@endif>
     </a>
 
 <table width="100%">
@@ -174,7 +179,7 @@
 <td>
      <strike> Rs{{$sproduct->price}}</strike>
              Rs{{$sproduct->sale_price}}
-        ({{($sproduct->price-$sproduct->sale_price)*100/$sproduct->price}}% OFF)
+        ({{floor(($sproduct->price-$sproduct->sale_price)*100/$sproduct->price)}}% OFF)
     
 </td>
 <td>

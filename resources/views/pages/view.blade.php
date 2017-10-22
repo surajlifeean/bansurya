@@ -136,19 +136,12 @@
 							<strike> Rs{{$subproduct->price}}</strike>
                   
              Rs{{$subproduct->sale_price}}
-        ({{($subproduct->price-$subproduct->sale_price)*100/$subproduct->price}}% OFF)
+        ({{floor(($subproduct->price-$subproduct->sale_price)*100/$subproduct->price)}}% OFF)
     
 
 						</span></h4>
 						<p class="vote"><strong>
-
-						@if($subproduct->discount_type=="Percentage")
-						{{floor(100/($subproduct->discount+8)+80)}}
-
-    @else
-    					{{floor(100/($subproduct->discount*100/$subproduct->price+8)+80)}}
-
-    @endif
+              80
 
 						%</strong> of buyers enjoyed this product! <strong><!-- (87 votes) --></strong></p>
 						<h5 class="sizes">sizes:{{$subproduct->getsize->name}}
@@ -182,7 +175,7 @@
         $id=session('guest_id');
 
       else
-        $id=createguest();
+        $id=App\Http\Controllers\myhelper::createguest();
   @endphp
 
 @else
@@ -271,7 +264,7 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
               <dl>
-              {{$subproduct->product->description}}
+              {!!$subproduct->product->description!!}
               </dl>
     
       </div>

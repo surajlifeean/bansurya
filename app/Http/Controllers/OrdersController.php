@@ -13,7 +13,7 @@ use App\Subcategory;
 
 use App\cart;
 
-use App\subproducts;
+use App\subproduct;
 
 use App\subproduct_cart;
 
@@ -117,8 +117,14 @@ class OrdersController extends Controller
        $subproduct_cart=subproduct_cart::where('cart_id','=',$cart_id)->get();
 
 
+
         foreach($subproduct_cart as $csp) {  //csp=cart sub product
-        
+       
+            $subproduct=subproduct::find($csp->subproduct_id);
+            $quantity=$csp->quantity;
+            $subproduct->quantity=$subproduct->quantity-$quantity;
+            $subproduct->save();
+
         $csp->delete();
 
         $cc=session('cart_count');

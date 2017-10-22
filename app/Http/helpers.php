@@ -10,6 +10,8 @@ use App\Product_Image;
 
 use App\User;
 
+use App\Shipping;
+
 use session;
 
 class myhelper{
@@ -42,6 +44,14 @@ public static function createguest(){
 	session(['guest_id' =>$user->id]);
 
 	return $user->id;
+}
+
+public static function getshippingcost(){
+
+$ship=Shipping::first();
+
+	return $ship;
+
 }
 
 

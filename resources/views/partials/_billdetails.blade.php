@@ -29,14 +29,25 @@
 			<a href="javascript:void(0);" style="cursor: default;">
 				 Not Applied 			</a></span>
 		</p> -->
-		<p class="title">Shipping Cost: <span class="pull-right">FREE</span></p>
+		<p class="title">Shipping Cost: <span class="pull-right">
+
+			@php 
+				$shipcost=App\Http\Controllers\myhelper::getshippingcost();
+			@endphp
+	@if($totalsp<=$shipcost->cart_value && $totalsp>0)
+	{{$shipping=$shipcost->shipping_cost}}
+				
+	@else
+		{{$shipping=0}}
+	@endif
+		</span></p>
 	</div>
 	
 	<div class="orderDetails">
 		<h4 class="couponTitle">Order Total 
 			<span class="pull-right">
 				Rs. 
-				<span id="order_total_summery">{{$totalsp}}</span>
+				<span id="order_total_summery">{{$totalsp+$shipping}}</span>
 				<input type="hidden" id="bag-total-balance" value="1949">
 			</span>
 		</h4> 

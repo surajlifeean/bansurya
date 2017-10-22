@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use session;
 
 use App\Category;
 
@@ -64,7 +65,7 @@ class ProductbycategoryController extends Controller
     {
         //dd($id);
 
-
+    session(['sortby'=>'']);
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
@@ -74,7 +75,7 @@ class ProductbycategoryController extends Controller
         ->where('categories.id','=',$id)
         ->get();
 
-       
+
 
     $images=Product_Image::select(DB::raw("min(id) as id"))
     ->groupBy('p_id')

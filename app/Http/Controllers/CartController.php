@@ -42,7 +42,7 @@ else{
     
 
     $cart=cart::select('id')->where('user_id','=',$id)->first();
-    $subproducts=null;
+    $subproducts=[];
 
     if(count($cart))
     $subproducts=cart::find($cart->id)->subproducts()->distinct('subproduct_id')->get();
