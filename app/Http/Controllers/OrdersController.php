@@ -40,7 +40,7 @@ class OrdersController extends Controller
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
-    $allorders=Orders::where('user_id','=',Auth::user()->id)->orderBy('order_id')->get();
+    $allorders=Orders::where('user_id','=',Auth::user()->id)->orderBy('order_id')->paginate(3);
 
     // dd($allorders);
 
@@ -93,6 +93,8 @@ class OrdersController extends Controller
  
     foreach ($subproducts as $subproduct) {
         # code...
+
+
     $order=new Orders;
 
     $order->user_id=$id;

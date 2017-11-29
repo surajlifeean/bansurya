@@ -61,6 +61,22 @@
    left: 100px;
 }
 
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+h5 { 
+   position: absolute; 
+   top: 0px; 
+   left: 5px; 
+   
+   color: white; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(83, 131, 211, 0.7);
+   padding: 5px; 
+}
 
 /*
   .navbar-default {
@@ -79,38 +95,32 @@
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
+
+<!--       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
+ -->
+      @foreach($banners as $key=>$banner)
+
+       <li data-target="#myCarousel" data-slide-to="{{$key}}" @if($key==0) class="active" @endif></li>
+     
+      @endforeach
+      
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
 
-      <div class="item active">
-        <img src="images/banner1.jpg" alt="Los Angeles" style="width:100%;">
+      
+      @foreach($banners as $key=>$banner)
+      <div class="item @if($key==0) active @endif">
+        <img src="{{asset('http://127.0.0.1:8080/images/'.$banner->name)}}" alt="Los Angeles" style="width:100%;">
         <div class="carousel-caption">
-          <h3>Banarasi  Saree</h3>
-          <p>It is always so much fun!</p>
+          <h3>{{$banner->title}}</h3>
+          <p>{{$banner->message}}</p>
         </div>
       </div>
+      @endforeach
 
-      <div class="item">
-        <img src="images/banner1.jpg" alt="Chicago" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Fantastic Kurties</h3>
-          <p>Catchy and glazzy!</p>
-        </div>
-      </div>
-    
-      <div class="item">
-        <img src="images/banner1.jpg" alt="New York" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Best Lehngas </h3>
-          <p>Special Collection Available!</p>
-        </div>
-      </div>
-  
     </div>
 
     <!-- Left and right controls -->
@@ -123,6 +133,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
+
 </div>
   <!--image slider ends-->
 <div class="container">
@@ -139,14 +151,16 @@
     @php
       $img=$sproduct->images[0]->name
     @endphp
-<!--     @if($sproduct->quantity==0)
-      <div class="out-of-stock" style="margin-bottom:px;">Out of Stock</div>
-    @endif -->
-      <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}"  alt="bansuriya" 
+    @if($sproduct->quantity==0)
+      <h5>Out of Stock</h5>
+    @endif
+      <img src="{{asset('http://127.0.0.1:8080/images/'.$img)}}" class="image" alt="bansuriya" 
 @if($sproduct->quantity==0)
-   style="opacity: 0.5;"
+   style="opacity: 0.3;"
+  
+ 
 @endif>
-    </a>
+   </a>
 
 <table width="100%">
 <tr>
@@ -168,7 +182,7 @@
   <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
   
   
-              <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button>
+              <button class="like btn btn-default" type="submit" disabled><span class="fa fa-heart"></span></button>
 
   {!!Form::close()!!}
 
@@ -208,7 +222,7 @@
   
   
   
-              <button class="add-to-cart btn btn-default" type="submit"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+              <button class="add-to-cart btn btn-default" type="submit" @if($sproduct->quantity==0)disabled="true" @endif"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
 
   {!!Form::close()!!}
 
@@ -224,7 +238,7 @@
   
   
   
-              <button class="add-to-cart btn btn-default" type="submit"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+              <button class="add-to-cart btn btn-default" type="submit" @if($sproduct->quantity==0)disabled="true" @endif><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
 
   {!!Form::close()!!}
 

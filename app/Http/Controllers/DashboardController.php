@@ -13,6 +13,7 @@ use App\Subcategory;
 
 use App\Profileimage;
 
+use Exception;
 
 use Auth;
 
@@ -26,8 +27,14 @@ class DashboardController extends Controller
     public function index()
     {
 
-    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+        try{
 
+    $image=Profileimage::where('user_id','=',Auth::user()->id)->first();
+}
+    catch(\Exception $e){
+        return redirect()->back();
+    }
+    
     $category=Category::all();
     $Subcategory=Subcategory::all();
 

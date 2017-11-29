@@ -10,7 +10,13 @@ use App\Product_Image;
 
 use App\User;
 
+use App\Size;
+
 use App\Shipping;
+
+use App\Product;
+
+use App\subproduct;
 
 use session;
 
@@ -22,6 +28,15 @@ $color=Color::find($id);
 	return $color->color_code;
 
 }
+
+public static function getsizefromid($id){
+
+$size=Size::find($id);
+	return $size->name;
+
+}
+
+
 
 public static function getimagefromid($id){
 
@@ -51,6 +66,20 @@ public static function getshippingcost(){
 $ship=Shipping::first();
 
 	return $ship;
+
+}
+public static function getproductvariants($id){
+
+	//i must send an array of other sizes and color. so colors will be displayed based on size selection
+
+	$product=subproduct::find($id)->product->subproducts;
+	$variants=array();
+	foreach($product as $key=>$pro){
+
+		if($pro->quantity>0)
+		$variants[$key][myhelper::getsizefromid($pro->size)]=myhelper::getcolorfromid($pro->color);
+	}
+	return $variants;
 
 }
 

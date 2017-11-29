@@ -54,7 +54,23 @@ class ChangepwdController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        
+        $this->validate($request,[
+
+        
+            'oldpwd'=>'required',
+            'newpwd'=>'required',
+            'cnewpwd'=>'required',
+            
+            ],
+
+            [
+        'oldpwd.required' => 'You old password is required',
+        'newpwd.required'  => 'New password is required',
+        'cnewpwd.required'  => 'Confirm password is required',
+    ]
+
+        );
         $password = $request->oldpwd;
 
         $user=User::find(Auth::user()->id);
@@ -115,4 +131,5 @@ class ChangepwdController extends Controller
     {
         //
     }
+    
 }

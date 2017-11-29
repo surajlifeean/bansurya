@@ -5,7 +5,7 @@
 
 <style>
 
-		
+    
 .img-circle {
 
     border-radius: 360px;
@@ -105,61 +105,67 @@
 
       <div class="col-sm-9 col-md-9"> <!-- col-md-9 -->
 
-      				<div class="row">
-      					@if(count($orders)==0)
+              <div class="row">
+                @if(count($orders)==0)
 
-      	                 <div class="panel panel-default  panel--styled">
+                         <div class="panel panel-default  panel--styled">
                               <div class="panel-body">
-      							 <img class="img-responsive" src="images/noorders.png" alt=""/>
-      							<h3> No Orders Placed Yet!</h3>
-      						</div>
-      					</div>
+                     <img class="img-responsive" src="images/noorders.png" alt=""/>
+                    <h3> No Replacement Requests Placed Yet!</h3>
+                  </div>
+                </div>
 
-      					@endif
-                    <p style="float:right; margin-top:-20px; ">  Returns and Replacements are allowed only within 48 hours prior to delivery</p>
-      					@foreach($orders as $key=>$order)
+                @endif
+                    <p style="float:right; margin-top:-20px; ">  Returns and Replacements Are Only Accepted If Product Is Not Tampered.</p>
+                @foreach($orders as $key=>$order)
                            <div class="panel panel-default  panel--styled">
                               <div class="panel-body">
                                 <div class="col-md-12 panelTop">  
                                   <div class="col-md-4">
                                   @php
-                                    $image=App\Http\Controllers\myhelper::getimagefromid($order->subproduct_id);
+                                    $image=App\Http\Controllers\myhelper::getimagefromid($order->order->subproduct_id);
                                   @endphp  
-                 						 <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$image)}}" alt=""/>
+                             <img class="img-responsive" src="{{asset('http://127.0.0.1:8080/images/'.$image)}}" alt=""/>
                                   </div>
                                   <div class="col-md-6"> 
-                                  <p>{{$order->product_name}}</p> 
+                                  <p>{{$order->order->product_name}}</p> 
                                   <div class="row">
                                   <div class="col-md-1 col-md-offset-4">
                                     color:
                                   </div>
                                   <div class="col-md-1">
-                                    <div style="width:10px; height:10px; background-color:{{App\Http\Controllers\myhelper::getcolorfromid($order->subproduct->color)}};"></div>
+                                    <div style="width:10px; height:10px; background-color:{{App\Http\Controllers\myhelper::getcolorfromid($order->order->subproduct->color)}};"></div>
                                   </div>
                                   <div class="col-md-2"> 
-                                     Quantity:{{$order->quantity}}
+                                     Quantity:{{$order->order->quantity}}
                                   </div>
                                 </div>
                                   
                                 </div>
 
                                    <div class="col-md-2">  
-                                  <p><strike>Rs&nbsp{{$order->unit_price}}</strike></p>
-                                  <p>Rs&nbsp{{$order->unit_sp}}</p>
-                                  		<a class="btn returnBtn" @if($order->order_status=='return' ||$order->order_status== 'replacement') disabled tabindex="-1"  @else href="{{route('returns.show',$order->id)}}" @endif>Return</a>
+                                  <p><strike>Rs&nbsp{{$order->order->unit_price}}</strike></p>
+                                  <p>Rs&nbsp{{$order->order->unit_sp}}</p>
                                       
-             							<a class="btn exchangeBtn" @if($order->order_status=='return' || $order->order_status== 'replacement') disabled tabindex="-1" href=# @else href="{{route('replacement.show',$order->id)}}" @endif>Exchange</a>
-                          <p>Order Date:{{date('d-m-y', strtotime($order->created_at))}}</p>
+                                 <p>Order Date:{{date('d-m-y', strtotime($order->order->created_at))}}</p>
+                                 <p>Return Request Date:{{date('d-m-y', strtotime($order->created_at))}}</p>
                                   
-             						</div>
-           
-                                 </div>
+                        </div>
 
+                        
+                  </div>
+                          <div class="row" style="float:right; margin-right: 20px;">
+
+                          Status: @if($order->order->order_status=="return") Request Processing..
+                                  @else  Return Done!
+                                  @endif
+                        </div>
+           
                              </div>
 
                          
-						</div>
-          <div style="text-align:right; margin-bottom:10px;">
+            </div>
+         <!--  <div style="text-align:right; margin-bottom:10px;">
             @if(isset($orders[$key+1]))
             @if($orders[$key]->order_id!=$orders[$key+1]->order_id)
              Order Id:BNY{{strtotime($order->created_at).$order->order_id}}<br>
@@ -167,15 +173,15 @@
             @else
                Order Id:BNY{{strtotime($order->created_at).$order->order_id}}<br>    
             @endif
-          </div>
+          </div> -->
                        @endforeach
-             	  </div>      
+                </div>      
 
       {!!$orders->links()!!}
 
              </div>
            
-	</div>  <!-- row ends -->
+  </div>  <!-- row ends -->
 </div> <!-- container ends -->
 
 @endsection

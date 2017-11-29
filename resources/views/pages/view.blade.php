@@ -146,7 +146,33 @@
 						%</strong> of buyers enjoyed this product! <strong><!-- (87 votes) --></strong></p>
 						<h5 class="sizes">sizes:{{$subproduct->getsize->name}}
 						</h5>
-            <div class="row">
+
+
+@if(Auth::guest())
+  
+   @php
+ if(Session::has('guest_id'))
+        
+        $id=session('guest_id');
+
+      else
+        $id=App\Http\Controllers\myhelper::createguest();
+  @endphp
+
+@else
+ @php $id=Auth::user()->id; @endphp
+@endif
+
+    <div class="row">
+      @if($subproduct->quantity==0)
+
+<a data-toggle="modal" data-target="#mynotifyModal">
+
+              <button class="add-to-cart btn btn-default add-to-cart-submit" type="submit">Notify</button>
+            </a>
+            <div>We will notify you once the product is available.</div>
+      @else
+
                             <div class="col-md-3 col-sm-5 col-xs-3">
                                 <h5 class="colors">Quantity:</h5>
                             </div>
@@ -166,21 +192,6 @@
 
 
     {!!Form::open(array('route'=>'cart.store','class'=>'addtocart'))!!}
-
-@if(Auth::guest())
-  
-   @php
- if(Session::has('guest_id'))
-        
-        $id=session('guest_id');
-
-      else
-        $id=App\Http\Controllers\myhelper::createguest();
-  @endphp
-
-@else
- @php $id=Auth::user()->id; @endphp
-@endif
 
 
   <input type="hidden" value="{{$subproduct->id}}" id="subproduct" name="subproduct_id">
@@ -205,6 +216,8 @@
                                 </div>
                               </div>
                 </div>
+
+
                         
 						<div class="action" style="margin-top: 20px;">
 
@@ -240,8 +253,10 @@
 </tr>
 </table>
 
+@endif
 
 						</div>
+         
 					</div>
 
 	</div><!--row ends-->
@@ -290,7 +305,68 @@
 
 </div>
 
+<div class="modal fade" id="mynotifyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Product Notification - <a href="http://www.jquery2dotnet.com"><b>Bansurya</b></a></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+   
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                
 
+                                <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+                        <div class="show-message"></div>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="notify-email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                               <p style="opacity:0.5;"> Provide your email we will notfy you once the product is available!</p>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                                             
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary notify-button">
+                                    Notify Me
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                            </div>
+
+                        </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+      
 @endsection
 
 
@@ -299,6 +375,7 @@
 @section('scripts')
 
   {!!Html::script('js/jqzoom.js')!!}
+
 
   <script type="text/javascript">
 $("#bzoom").zoom({
@@ -390,5 +467,28 @@ var quantitiy=0;
 });
 </script>
 
+
+<script type="text/javascript">
+  
+  $('.notify-button').click(function(e){
+    e.preventDefault();
+    var email=$('#notify-email').val();
+    var product_id={{$subproduct->id}};
+
+     $.ajax({
+        url: "/ajaxreq",
+        type:"GET",
+        data:{email:email,id:product_id},
+        success: function(result){
+        $('.show-message').html("Done! We will notify you as soon as the product is available");
+        
+         
+                // location.reload();
+    
+    }});
+    
+
+  })
+</script>
 
 @endsection

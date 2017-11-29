@@ -97,11 +97,12 @@
 
   $( ".checkout" ).click(function(event) {
     event.preventDefault();
-    if($('#paymentmode').val()=="")
-            alert("field empty");
+    if($('#paymentmode').prop('checked'))
+            $( ".confirmorder" ).submit();
+          
     else        
-          $( ".confirmorder" ).submit();
-});
+          alert("Select Payment Mode");
+  });
 
 
 </script>

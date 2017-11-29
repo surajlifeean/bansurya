@@ -18,6 +18,7 @@ use App\subproduct_cart;
 
 use App\cart;
 
+use App\Banner;
 
 use App\Wishlist;
 class HomeController extends Controller
@@ -26,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         //
-
+        $banners=Banner::all();
         if(Auth::user()){
         $cart=cart::where('user_id','=',Auth::user()->id)->first();
 
@@ -66,7 +67,7 @@ class HomeController extends Controller
     $Subcategory=Subcategory::all();
     $subproduct=subproduct::where('new_arrival','=','1')->get();
     
-    return view('pages.home')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproduct);
+    return view('pages.home')->withCategory($category)->withSubcategory($Subcategory)->withSubproduct($subproduct)->withBanners($banners);
     }
 
 }

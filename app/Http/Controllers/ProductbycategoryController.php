@@ -65,7 +65,6 @@ class ProductbycategoryController extends Controller
     {
         //dd($id);
 
-    session(['sortby'=>'']);
     $category=Category::all();
     $Subcategory=Subcategory::all();
 

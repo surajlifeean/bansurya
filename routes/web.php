@@ -63,10 +63,14 @@ Route::resource('address','AddressController');
 
 Route::resource('deliveryadd','DeliveryaddController');
 
+Route::resource('returns','ReturnController');
+
+Route::resource('replacement','ReplacementController');
 
 Route::resource('order','OrdersController');
 
 // Route::post('auth/register','Auth\RegisterController@postRegister');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

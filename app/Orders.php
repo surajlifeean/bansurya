@@ -11,6 +11,17 @@ class Orders extends Model
         return $this->belongsTo('App\subproduct','subproduct_id');
     }
 
+        public function replacement(){
+
+        return $this->hasOne('App\Replacement','o_id');
+    }
+
+
+        public function returnorder(){
+
+        return $this->hasOne('App\Returnorder','o_id');
+    }
+
     
 
 }

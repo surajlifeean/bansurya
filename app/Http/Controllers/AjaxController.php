@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Notifyrequest;
+
 class AjaxController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $email=$_REQUEST['email'];
+        $subproduct_id=$_REQUEST['id'];
+        $notify=new Notifyrequest;
+        $notify->email=$email;
+        $notify->subproduct_id=$subproduct_id;
+        $notify->notification_status='Not Notified';
+        $notify->save();
+        echo "done";
+
     }
 
     /**

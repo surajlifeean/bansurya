@@ -447,5 +447,12 @@ $(function() {
          });
       </script>
 
- 
+ <script type="text/javascript">
+    $('#sel1').change(function(){
+
+        alert($(this).val());
+    });
+   
+
+ </script>
 @endsection

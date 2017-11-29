@@ -165,6 +165,16 @@ span.personalInfoValue {
 
         </div>
         <div class="col-sm-9 col-md-9">
+          
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
          {!!Form::open(array('route'=>'changepwd.store','class'=>'changepwd'))!!}             
     <div class="well">
               <div class="tab-content">
@@ -178,7 +188,7 @@ span.personalInfoValue {
                       <label><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         Old Password</label>
                        <input id="oldpwd" name="oldpwd" type="text" placeholder="Old Password"
-                        class="input-xlarge form-control">
+                        class="input-xlarge form-control" required/>
                        
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
@@ -186,7 +196,7 @@ span.personalInfoValue {
                       <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                         New Password</label>
                        <input id="newpwd" name="newpwd" type="text" placeholder="New Password"
-                        class="input-xlarge form-control">
+                        class="input-xlarge form-control" required>
                        
 
                     </div>
@@ -199,7 +209,7 @@ span.personalInfoValue {
                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         Confirm New Password</label>
                         <input id="cnewpwd" name="cnewpwd" type="text" placeholder="Confirm Password"
-                        class="input-xlarge form-control">
+                        class="input-xlarge form-control" required>
                        
                        </div>
                     <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 personalInfoIcon name">
@@ -249,5 +259,11 @@ span.personalInfoValue {
 
 
         });
+         $( document ).ready(function() {
+    $('#collapseThree').addClass("in");
+    $('#collapseOne').removeClass("in");
+      
+  
+});
     </script>
 @endsection

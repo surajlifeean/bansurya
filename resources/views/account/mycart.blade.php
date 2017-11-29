@@ -1,4 +1,3 @@
-{{dump($subproducts)}} 
 
 @extends('main')
 
@@ -184,7 +183,7 @@ span.glyphicon {
                                   </div>
                                   <div class="col-md-6">  
                                 <h3>{{$subproduct->product->name}}</h3>
-                                <p>{{$subproduct->product->description}}</p>
+                                <p>{!!$subproduct->product->description!!}</p>
 
                                 <p>
 
@@ -341,63 +340,8 @@ function decreasequantity(id,quantity){
     
     }});
     
-        
-    
-
-    
 }
 
-// $(document).ready(function(){
-
-// var quantitiy=0;
-//    $('.quantity-right-plus').click(function(e){
-        
-//         // Stop acting like a button
-//         e.preventDefault();
-//         // Get the field name
-
-//         console.log(e.target.id);
-//         var id=e.target.id;
-//         alert (id);
-//         var quantity = parseInt($('#quantity-'+id).val());
-        
-    //     $.ajax({
-    //     url: "/quantityincrement", 
-    //     type:"GET",
-    //     data:{quantity:quantity},
-    //     success: function(result){
-
-    //             alert(result);
-    
-    // }});
-    
-        
-    // });
-
-//      $('.quantity-left-minus').click(function(e){
-//         // Stop acting like a button
-//         e.preventDefault();
-//         // Get the field name
-//         console.log(e.target.id);
-//         var id=e.target.id;
-//         alert (id);
-//         var quantity = parseInt($('#quantity-'+id).val());
-        
-//             $.ajax({
-//         url: "/quantitydecrement", 
-//         type:"GET",
-//         data:{quantity:quantity},
-//         success: function(result){
-
-//                 alert(result);
-    
-//     }
-// });
-
-
-//        });
-    
-// });
 </script>
 
 

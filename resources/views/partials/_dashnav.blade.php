@@ -43,17 +43,17 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="{{route('order.index')}}">Orders</a> <span class="label label-success">$ 320</span>
+                                        <a href="{{route('order.index')}}">Orders</a> 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="#">Returns</a>
+                                        <a href="{{route('returns.index')}}">Returns</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="#">Replacements</a>
+                                        <a href="{{route('replacement.index')}}">Replacements</a>
                                     </td>
                                 </tr>
                                 
@@ -76,12 +76,12 @@
                                         <a href="{{route('changepwd.index')}}">Change Password</a>
                                     </td>
                                 </tr>
-                                <tr>
+                              <!--   <tr>
                                     <td>
                                         <a href="#">Notifications</a> <span class="label label-info">5</span>
                                     </td>
                                 </tr>
-                                </table>
+                               -->  </table>
                         </div>
                     </div>
                 </div>
