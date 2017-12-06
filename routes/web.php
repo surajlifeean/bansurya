@@ -33,7 +33,7 @@ Route::get('/paralax', function () {
 Route::resource('profile','ProfileController');
 
 
-Route::get('home','HomeController@index');
+// Route::get('home','HomeController@index');
 
 //Route::post('register','ProductController@register');
 

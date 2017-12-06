@@ -1,7 +1,4 @@
-<!-- {{dump($subproducts)}}
- -->
-<!-- {{dump($sizes)}}
- -->
+
 
 @extends('main')
 
@@ -162,13 +159,17 @@
 
     <div class="col-md-3  col-sm-3 col-xs-12">    
 <label for="sel1">SORT BY:</label>
-      <select class="form-control" id="sel1">
+<!-- 
+<form action="{{route('category.store')}}" method="post" class="form-sort">
+  {{ csrf_field() }} -->
+      <select class="form-control" name="sort-option" id="sel1">
         <option>Select</option>
         <option value="htol">Price: High to Low</option>
         <option value="ltoh">Price: Low to High</option>
         <option value="new">What's New</option>
       
       </select>
+    <!-- </form> -->
       </div>
     </div>
 </div>
@@ -449,8 +450,25 @@ $(function() {
 
  <script type="text/javascript">
     $('#sel1').change(function(){
+        var x=$(this).val();
+        var url=window.location.pathname;
+        var arr=url.split("/");
+        var element=arr.slice(-1);
+      
+      $.ajax({
+      url:"{{route('category.create')}}",
+      data: {sortby:x,id:element},
+      type: 'get',
+      success:function(response)
+      {
+          location.reload();
+          
+      }
+    });
 
-        alert($(this).val());
+//    $('.form-sort').submit();
+
+      
     });
    
 

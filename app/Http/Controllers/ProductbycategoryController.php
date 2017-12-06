@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-use session;
+use Session;
 
 use App\Category;
 
@@ -41,7 +41,36 @@ class ProductbycategoryController extends Controller
      */
     public function create()
     {
-        //
+
+            $id=$_REQUEST['id'];
+            $sortby=$_REQUEST['sortby'];
+
+            if($sortby=="new") {           
+                $subproduct=Category::select('*')
+                ->join('products','products.category_id','=','categories.id')
+                ->join('subproducts','subproducts.product_id','=','products.id')
+                ->where('categories.id','=',$id)
+                ->where('new_arrival','=',1)
+                ->get();
+                }
+            else{
+                if($sortby=="htol")
+                    $v='desc';
+                if($sortby=="ltoh")
+                    $v='asc';
+                $subproduct=Category::select('*')
+                ->join('products','products.category_id','=','categories.id')
+                ->join('subproducts','subproducts.product_id','=','products.id')
+                ->where('categories.id','=',$id)
+                ->orderBy('sale_price',$v)
+                ->get();
+                }
+
+            session(['subproduct'=>$subproduct]);
+
+            session(['flag'=>'1']);
+            
+
     }
 
     /**
@@ -52,7 +81,8 @@ class ProductbycategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
     }
 
     /**
@@ -63,33 +93,40 @@ class ProductbycategoryController extends Controller
      */
     public function show($id)
     {
-        //dd($id);
-
+    
+    //dd(session('subproduct'));
     $category=Category::all();
     $Subcategory=Subcategory::all();
 
-        $subproduct=Category::select('*')
+
+     if(session::has('flag') && session('flag')==1){
+        $subproduct=session('subproduct');    
+        }
+        else{
+          $subproduct=Category::select('*')        
         ->join('products','products.category_id','=','categories.id')
         ->join('subproducts','subproducts.product_id','=','products.id')
         ->where('categories.id','=',$id)
         ->get();
+        
+        }
 
 
+            //session::destroy('subproduct');
 
-    $images=Product_Image::select(DB::raw("min(id) as id"))
-    ->groupBy('p_id')
-            ->get();
+            session(['flag'=>'0']);
+
+            $images=Product_Image::select(DB::raw("min(id) as id"))
+            ->groupBy('p_id')
+                ->get();
 
              $colors=array();
             foreach($subproduct as $sp){
                 $colors[]=$sp->color;
             }
 
-            $colors=array_unique($colors);
+    $colors=array_unique($colors);
         
-
-    //dd($colors);
-
 
     $sortcolor = DB::table('colors')
                     ->whereIn('id', $colors)
@@ -110,9 +147,6 @@ class ProductbycategoryController extends Controller
             $sortsize = DB::table('sizes')
                     ->whereIn('id', $size)
                     ->get();
-
-
-   // dd($oneimage);
 
         return view('pages.productlisting')->withSubproducts($subproduct)->withCategory($category)->withSubcategory($Subcategory)->withImages($oneimage)->withColors($sortcolor)->withSizes($sortsize);
 

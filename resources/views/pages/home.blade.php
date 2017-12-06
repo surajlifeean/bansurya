@@ -182,7 +182,7 @@ h5 {
   <input type="hidden" value="{{Auth::user()->id}}" id="id" name="id">
   
   
-              <button class="like btn btn-default" type="submit" disabled><span class="fa fa-heart"></span></button>
+              <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button>
 
   {!!Form::close()!!}
 
